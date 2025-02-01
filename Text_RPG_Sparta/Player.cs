@@ -5,41 +5,75 @@
 /// </summary>
 public class Player
 {
-	private string Name = "";
-    private string Chad = "";
-    private int LV = 0;
-    private	int STR = 0;
-	private int HP = 0;
-	private int DEF = 0;
-	private int Gold = 0;
+	private string name = "";
+    private string chad = "";
+
+    private int level = 0;
+    private	int atk = 0;
+	private int hp = 0;
+	private int def = 0;
+	private int gold = 0;
+
+    private [] inventory = { }; 
+
 
 	//생성자
 	public Player()
 	{
-		this.LV = 1;
-		this.Chad = "전사";
-		this.HP = 100;
-		this.DEF = 5;
-		this.STR = 10;
-		this.Gold = 1500;
+		this.level = 1;
+		this.chad = "전사";
+		this.hp = 100;
+		this.def = 5;
+		this.atk = 10;
+		this.gold = 1500;
 	}
 
-	public void Show_State()
+	//프로퍼티
+	public string Name
 	{
-		while (true)
-		{
-			Console.WriteLine($"Lv. {this.LV}");
-			Console.WriteLine($"공격력: {this.STR}");
-			Console.WriteLine($"방어력: {this.DEF}");
-			Console.WriteLine($"체 력 : {this.LV}");
-			Console.WriteLine($"Gold  : {this.LV}");
-			Console.WriteLine();
-			Console.WriteLine("0. 나가기");
-        }
+		get { return name; }
+		private set { name = value; }
+	}
+	
+	public string Chad
+	{
+		get { return chad; }
+		private set { chad = value; } 
+	}
+	
+	public int Level
+	{
+		get { return level; }
+		private set { level = value; }
+	}
+	
+	public int Atk
+	{
+		get { return atk; }
+		private set { atk = value; }
 	}
 
-	public void Show_Inventory()
+	public int Gold
 	{
-		
+		get { return hp; }
+		private set { hp = value; }
+	}
+	
+	public int Def
+	{
+		get { return def; }
+		private set { def = value; }
+	}
+	
+	public int Hp
+	{
+		get { return hp; }
+		private set { hp = value; }
+	}
+
+    public [] Inventory
+	{
+		get { return  inventory; }
+		private set { inventory = value; }
 	}
 }
