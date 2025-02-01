@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|c:\\users\\phn22\\source\\repos\\text_rpg_sparta\\textrpg\\text_rpg_sparta\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|solutionrelative:text_rpg_sparta\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|c:\\users\\phn22\\source\\repos\\text_rpg_sparta\\textrpg\\text_rpg_sparta\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|solutionrelative:text_rpg_sparta\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|c:\\users\\phn22\\source\\repos\\text_rpg_sparta\\textrpg\\text_rpg_sparta\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|solutionrelative:text_rpg_sparta\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|c:\\users\\phn22\\source\\repos\\text_rpg_sparta\\textrpg\\text_rpg_sparta\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|solutionrelative:text_rpg_sparta\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|c:\\users\\phn22\\source\\repos\\text_rpg_sparta\\textrpg\\text_rpg_sparta\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|solutionrelative:text_rpg_sparta\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,27 +31,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Start.cs",
-              "DocumentMoniker": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Start.cs",
-              "RelativeDocumentMoniker": "Text_RPG_Sparta\\Start.cs",
-              "ToolTip": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Start.cs*",
-              "RelativeToolTip": "Text_RPG_Sparta\\Start.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T04:32:05.608Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "PlayerManager.cs",
               "DocumentMoniker": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\PlayerManager.cs",
               "RelativeDocumentMoniker": "Text_RPG_Sparta\\PlayerManager.cs",
               "ToolTip": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\PlayerManager.cs",
               "RelativeToolTip": "Text_RPG_Sparta\\PlayerManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T04:31:53.062Z",
+              "WhenOpened": "2025-02-01T12:04:31.535Z",
               "EditorCaption": ""
             },
             {
@@ -58,9 +49,35 @@
               "RelativeDocumentMoniker": "Text_RPG_Sparta\\Player.cs",
               "ToolTip": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Player.cs",
               "RelativeToolTip": "Text_RPG_Sparta\\Player.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAIwA4AAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-01T04:31:57.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\GameManager.cs",
+              "RelativeDocumentMoniker": "Text_RPG_Sparta\\GameManager.cs",
+              "ToolTip": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\GameManager.cs",
+              "RelativeToolTip": "Text_RPG_Sparta\\GameManager.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAAwEoAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T08:34:38.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Item.cs",
+              "DocumentMoniker": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Item.cs",
+              "RelativeDocumentMoniker": "Text_RPG_Sparta\\Item.cs",
+              "ToolTip": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Item.cs",
+              "RelativeToolTip": "Text_RPG_Sparta\\Item.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAwD0AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T08:34:20.927Z",
               "EditorCaption": ""
             }
           ]

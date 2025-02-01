@@ -6,34 +6,35 @@
 public class Player
 {
 	private string name = "";
-    private string chad = "";
+    private string job = "";
 
     private int level = 0;
     private	int atk = 0;
 	private int hp = 0;
 	private int def = 0;
 	private int gold = 0;
+	private Item[] inventory;
+	private Item[] equipItem;
 
-    private string [] inventory = { };
-	private string[] equipItem = { };
-
-
-    //생성자
-    public Player()
+	//생성자
+	public Player()
     {
         this.name = "James";
         this.level = 1;
-        this.chad = "전사";
+        this.job = "전사";
         this.hp = 100;
         this.def = 5;
         this.atk = 10;
-        this.gold = 1500;
+		this.gold = 1500;
+		int itemCount = 5;
+        inventory = new Item[6];
+		equipItem = new Item[6];
     }
     public Player(string name)
 	{
 		this.name = name;
 		this.level = 1;
-		this.chad = "전사";
+		this.job = "전사";
 		this.hp = 100;
 		this.def = 5;
 		this.atk = 10;
@@ -47,10 +48,10 @@ public class Player
 		set { name = value; }
 	}
 	
-	public string Chad
+	public string Job
 	{
-		get { return chad; }
-		private set { chad = value; } 
+		get { return job; }
+		private set { job = value; } 
 	}
 	
 	public int Level
@@ -67,8 +68,8 @@ public class Player
 
 	public int Gold
 	{
-		get { return hp; }
-		private set { hp = value; }
+		get { return gold; }
+		set { gold = value; }
 	}
 	
 	public int Def
@@ -83,13 +84,13 @@ public class Player
 		private set { hp = value; }
 	}
 
-    public string [] Inventory
+    public Item [] Inventory
 	{
 		get { return  inventory; }
 		private set { inventory = value; }
 	}
 
-	public string[] EquipItem
+	public Item[] EquipItem
 	{
 		get { return equipItem; }
 		private set { equipItem = value; }
