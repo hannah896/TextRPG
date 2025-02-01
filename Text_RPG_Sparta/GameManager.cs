@@ -17,6 +17,7 @@ public class GameManager
     //마을 페이지
     public void Villiage()
 	{
+        Console.Clear();
         string[] doing = { "상태 보기", "인벤토리", "상점" };
         int command;
 
@@ -28,17 +29,21 @@ public class GameManager
             Console.WriteLine($"{i+1}. {doing[i]}");
         }
 
-        command = int.Parse(InputCommand());
+        command = InputCommand();
 
         //상태보기
         if (command == 1)
         {
             playerManager.ShowState();
-            string command = InputCommand();
-            Console.WriteLine("0. 나가기");
-            while (int.Parse(command) != 0)
+
+            while(true)
             {
-                command = InputCommand();
+                int commend = InputCommand();
+                if (commend == 0)
+                {
+                    Console.Clear();
+                    break;
+                }
             }
         }
 
@@ -56,11 +61,13 @@ public class GameManager
         else
         {
             Console.WriteLine("잘못된 입력입니다.");
+
+            Thread.Sleep(1300);
         }
     }
     
     // 행동 입력기
-	public string InputCommand()
+	public int InputCommand()
 	{
         Console.WriteLine();
         string command;
@@ -69,16 +76,15 @@ public class GameManager
         {
             Console.Write(">> ");
             command = Console.ReadLine();
-            if (command != "")
+            if (command != "" && int.TryParse(command, out int result))
             {
-                break;
+                return result;
             }
+
             else
             {
                 Console.WriteLine("잘못된 입력입니다.");
             }
         }
-        
-		return command;
     }
 }

@@ -5,8 +5,6 @@
 /// </summary>
 public class Player
 {
-	
-
 	private string name = "";
     private string chad = "";
 
@@ -46,7 +44,7 @@ public class Player
 	public string Name
 	{
 		get { return name; }
-		private set { name = value; }
+		set { name = value; }
 	}
 	
 	public string Chad
