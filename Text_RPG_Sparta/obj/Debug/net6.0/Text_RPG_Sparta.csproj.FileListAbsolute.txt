@@ -1,0 +1,15 @@
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\obj\Debug\net6.0\Text_RPG_Sparta.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\obj\Debug\net6.0\Text_RPG_Sparta.AssemblyInfoInputs.cache
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\obj\Debug\net6.0\Text_RPG_Sparta.AssemblyInfo.cs
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\obj\Debug\net6.0\Text_RPG_Sparta.csproj.CoreCompileInputs.cache
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\obj\Debug\net6.0\Text_RPG_Sparta.sourcelink.json
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\bin\Debug\net6.0\Text_RPG_Sparta.exe
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\bin\Debug\net6.0\Text_RPG_Sparta.deps.json
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\bin\Debug\net6.0\Text_RPG_Sparta.runtimeconfig.json
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\bin\Debug\net6.0\Text_RPG_Sparta.dll
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\bin\Debug\net6.0\Text_RPG_Sparta.pdb
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\obj\Debug\net6.0\Text_RPG_Sparta.dll
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\obj\Debug\net6.0\refint\Text_RPG_Sparta.dll
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\obj\Debug\net6.0\Text_RPG_Sparta.pdb
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\obj\Debug\net6.0\Text_RPG_Sparta.genruntimeconfig.cache
+C:\Users\phn22\source\repos\Text_RPG_Sparta\TextRPG\Text_RPG_Sparta\obj\Debug\net6.0\ref\Text_RPG_Sparta.dll

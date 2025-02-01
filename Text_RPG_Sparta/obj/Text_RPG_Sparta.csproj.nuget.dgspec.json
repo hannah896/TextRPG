@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\Text_RPG_Sparta\\Text_RPG_Sparta.csproj": {}
+    "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Text_RPG_Sparta.csproj": {}
   },
   "projects": {
-    "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\Text_RPG_Sparta\\Text_RPG_Sparta.csproj": {
+    "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Text_RPG_Sparta.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\Text_RPG_Sparta\\Text_RPG_Sparta.csproj",
+        "projectUniqueName": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Text_RPG_Sparta.csproj",
         "projectName": "Text_RPG_Sparta",
-        "projectPath": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\Text_RPG_Sparta\\Text_RPG_Sparta.csproj",
+        "projectPath": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Text_RPG_Sparta.csproj",
         "packagesPath": "C:\\Users\\phn22\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\Text_RPG_Sparta\\obj\\",
+        "outputPath": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

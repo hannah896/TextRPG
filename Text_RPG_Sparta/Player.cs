@@ -5,6 +5,8 @@
 /// </summary>
 public class Player
 {
+	
+
 	private string name = "";
     private string chad = "";
 
@@ -14,12 +16,24 @@ public class Player
 	private int def = 0;
 	private int gold = 0;
 
-    private [] inventory = { }; 
+    private string [] inventory = { };
+	private string[] equipItem = { };
 
 
-	//생성자
-	public Player()
+    //생성자
+    public Player()
+    {
+        this.name = "James";
+        this.level = 1;
+        this.chad = "전사";
+        this.hp = 100;
+        this.def = 5;
+        this.atk = 10;
+        this.gold = 1500;
+    }
+    public Player(string name)
 	{
+		this.name = name;
 		this.level = 1;
 		this.chad = "전사";
 		this.hp = 100;
@@ -71,9 +85,15 @@ public class Player
 		private set { hp = value; }
 	}
 
-    public [] Inventory
+    public string [] Inventory
 	{
 		get { return  inventory; }
 		private set { inventory = value; }
+	}
+
+	public string[] EquipItem
+	{
+		get { return equipItem; }
+		private set { equipItem = value; }
 	}
 }
