@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlTypes;
 using System.Globalization;
+using System.Xml.Serialization;
 
 /// <summary>
 /// Summary description for Class1
@@ -47,29 +48,23 @@ public class GameManager
 
         command = InputCommand();
 
-        //상태보기
+        Console.Clear();
+        Console.WriteLine($"[{doing[command - 1]}]");
+        //1. 상태보기
         if (command == 1)
         {
-            playerManager.ShowState();
-
-            while(true)
-            {
-                int commend = InputCommand();
-                if (commend == 0)
-                {
-                    Console.Clear();
-                    break;
-                }
-            }
+            Console.WriteLine("캐릭터의 정보가 표시됩니다.");
+            Console.WriteLine();
+            State();
         }
 
-        //인벤토리
+        //2. 인벤토리
         else if (command == 2)
         {
-            playerManager.ShowInventory();
+            Inventory();
         }
 
-        //상점
+        //3. 상점
         else if (command == 3)
         {
             Store();
@@ -98,11 +93,46 @@ public class GameManager
             {
                 return result;
             }
-
             else
             {
                 Console.WriteLine("잘못된 입력입니다.");
             }
+        }
+    }
+
+    //상태창 페이지
+    public void State()
+    {
+        playerManager.ShowState();
+
+        while (true)
+        {
+            int command = InputCommand();
+            if (command == 0)
+            {
+                Console.Clear();
+                break;
+            }
+        }
+    }
+
+    //인벤토리 페이지
+    public void Inventory()
+    {
+        playerManager.ShowInventory();
+
+        Console.WriteLine("1. 장착관리");
+        Console.WriteLine("0. 나가기");
+        
+        int command = InputCommand();
+
+        if (command == 0)
+        {
+            Console.Clear();
+        }
+        else if (command == 1)
+        {
+            playerManager.EqualManager();
         }
     }
 
@@ -135,14 +165,19 @@ public class GameManager
                     break;
                 }
                 //구매할 아이템 선택
-                else
+                else if(commend >0 && commend <= storeItem.Length)
                 {
                     //선택한 아이템정보
                     Item seleteItem = storeItem[commend - 1];
                     BuyItem(seleteItem);
                 }
+                //잘못된 번호를 입력
+                else
+                {
+                    Console.WriteLine("잘못된 입력입니다");
+                    Thread.Sleep(900);
+                }
             }
-
         }
     }
 
@@ -150,13 +185,14 @@ public class GameManager
     private void ShowItem(bool isbuy)
     {
         Console.Clear();
-        Console.WriteLine("상점\n필요한 아이템을 얻을 수 있는 상점입니다.");
+        Console.WriteLine("[상점]");
+        Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
         Console.WriteLine();
         bool isBuy = isbuy;
         Console.WriteLine($"[보유 골드]\n {player.Gold} G");
         Console.WriteLine();
         Console.WriteLine("[아이템 목록]");
-        for (int i = 0; i < storeItem.GetLength(0); i++)
+        for (int i = 0; i < storeItem.Length; i++)
         {
             //아이템 목록 출력하는거
             Console.Write("- ");
@@ -187,7 +223,6 @@ public class GameManager
         {
             Console.WriteLine("1. 아이템 구매");
         }
-
         Console.WriteLine("0. 나가기");
     }
 
@@ -209,13 +244,21 @@ public class GameManager
         {
             //골드 차감
             playerManager.SpendMoney(seleteItem.Price);
-            //인벤토리에 추가
-            playerManager.GetItem(seleteItem);
+            //인벤토리에 추가&잘 처리되었는지 확인
+            bool flag  = playerManager.GetItem(seleteItem);
             //아이템 구매완료 표시
             seleteItem.Buy();
 
-            Console.WriteLine("구매를 완료했습니다.");
-            
+            //인벤토리가 가득찼다면
+            if (!flag)
+            {
+                player.Gold += seleteItem.Price;
+                seleteItem.isSold = false;
+            }
+            else
+            {
+                Console.WriteLine("구매를 완료했습니다.");
+            }
         }
         Thread.Sleep(900);
     }

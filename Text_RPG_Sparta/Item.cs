@@ -15,6 +15,7 @@ public class Item
     private int price;
 
     public bool isSold = false;
+    public bool isEquip = false;
 
     //생성자
     public Item(string name, string effectDescription, string description, int price, string effect, int effectValue)
