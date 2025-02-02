@@ -106,6 +106,47 @@ public class GameManager
         }
     }
 
+    //상점 페이지
+    public void Store()
+    {
+        Console.Clear();
+        //처음 상점 아이템을 보여줌
+        ShowItem(false);
+
+        int command = InputCommand();
+
+        //나가기
+        if (command == 0)
+        {
+            Console.Clear();
+        }
+        //아이템구매
+        else if (command == 1)
+        {
+            while (true)
+            {
+                ShowItem(true);
+                //구매할 아이템을 입력받음
+                int commend = InputCommand();
+                //나가기
+                if (commend == 0)
+                {
+                    Console.Clear();
+                    break;
+                }
+                //구매할 아이템 선택
+                else
+                {
+                    //선택한 아이템정보
+                    Item seleteItem = storeItem[commend - 1];
+                    BuyItem(seleteItem);
+                }
+            }
+
+        }
+    }
+
+    //상점의 아이템을 보여주는 메서드
     private void ShowItem(bool isbuy)
     {
         Console.Clear();
@@ -140,39 +181,42 @@ public class GameManager
             }
             Console.WriteLine();
         }
-    }
-    public void Store()
-    {
-        Console.Clear();
-        ShowItem(false);
+        Console.WriteLine();
 
-        Console.WriteLine("1. 아이템 구매");
+        if (isBuy == false)
+        {
+            Console.WriteLine("1. 아이템 구매");
+        }
+
         Console.WriteLine("0. 나가기");
+    }
 
-        int command = InputCommand();
+    //아이템 구매 메서드
+    public void BuyItem(Item seleteItem)
+    {
+        //이미 구매한 아이템이라면
+        if (seleteItem.isSold == true)
+        {
+            Console.WriteLine("이미 구매한 아이템입니다.");
+        }
+        //보유 금액이 부족하다면
+        else if (seleteItem.Price > player.Gold)
+        {
+            Console.WriteLine("Gold 가 부족합니다.");
+        }
+        //구매가 가능하다면
+        else
+        {
+            //골드 차감
+            playerManager.SpendMoney(seleteItem.Price);
+            //인벤토리에 추가
+            playerManager.GetItem(seleteItem);
+            //아이템 구매완료 표시
+            seleteItem.Buy();
 
-        //나가기
-        if (command == 0)
-        {
-            Console.Clear();
+            Console.WriteLine("구매를 완료했습니다.");
+            
         }
-        //아이템구매
-        else if (command == 1)
-        {
-            ShowItem(true);
-            int commend = InputCommand();
-            if (commend == 0)
-            {
-                Console.Clear();
-            }
-            else
-            {
-                //골드 차감
-                playerManager.SpendMoney(commend);
-                Console.WriteLine();
-                //인벤토리에 아이템
-                
-            }
-        }
+        Thread.Sleep(900);
     }
 }

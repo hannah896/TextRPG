@@ -3,14 +3,17 @@
 /// <summary>
 /// Summary description for Class1
 /// </summary>
-public class PlayerManager 
+public class PlayerManager
 {
     private Player player;
-
+    
+    //생성자
     public PlayerManager(Player player)
     {
         this.player = player;
     }
+    
+    //상태 보여주기
     public void ShowState()
     {
         Console.Clear();
@@ -24,6 +27,7 @@ public class PlayerManager
         Console.WriteLine("0. 나가기");
     }
 
+    //인벤토리 보여주기
     public void ShowInventory()
     {
         Console.Clear();
@@ -37,9 +41,23 @@ public class PlayerManager
         player.Name = name;
     }
 
-    //
+    //사용골드 빠지기
     public void SpendMoney(int money)
     {
         player.Gold = player.Gold - money;
+    }
+
+    public bool GetItem(Item item)
+    {
+        for (int i = 0; i<player.Inventory.Length; i++)
+        {
+            if (player.Inventory[i] == null)
+            {
+                player.Inventory[i] = item;
+                return true;
+            }
+        }
+        Console.WriteLine("인벤토리가 가득찼습니다.");
+        return false;
     }
 }

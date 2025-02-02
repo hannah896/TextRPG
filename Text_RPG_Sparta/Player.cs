@@ -25,7 +25,7 @@ public class Player
         this.hp = 100;
         this.def = 5;
         this.atk = 10;
-		this.gold = 1500;
+		this.gold = 30000;
 		int itemCount = 5;
         inventory = new Item[6];
 		equipItem = new Item[6];
@@ -51,48 +51,48 @@ public class Player
 	public string Job
 	{
 		get { return job; }
-		private set { job = value; } 
+        protected set { job = value; } 
 	}
 	
 	public int Level
 	{
 		get { return level; }
-		private set { level = value; }
+        protected set { level = value; }
 	}
 	
 	public int Atk
 	{
 		get { return atk; }
-		private set { atk = value; }
+        protected set { atk = value; }
 	}
 
 	public int Gold
 	{
 		get { return gold; }
-		set { gold = value; }
+        set { gold = value; }
 	}
 	
 	public int Def
 	{
 		get { return def; }
-		private set { def = value; }
+        protected set { def = value; }
 	}
 	
 	public int Hp
 	{
 		get { return hp; }
-		private set { hp = value; }
+        protected set { hp = value; }
 	}
 
     public Item [] Inventory
 	{
 		get { return  inventory; }
-		private set { inventory = value; }
+        protected set { inventory = value; }
 	}
 
 	public Item[] EquipItem
 	{
 		get { return equipItem; }
-		private set { equipItem = value; }
+        protected set { equipItem = value; }
 	}
 }

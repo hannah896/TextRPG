@@ -62,6 +62,6 @@ public class Item
     //구매했을때 판매완료를 띄우기위한 트리거
     public void Buy()
     {
-        isSold = true;
+        this.isSold = true;
     }
 }
