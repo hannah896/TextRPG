@@ -10,7 +10,7 @@ public class GameManager
 {
     private Player player;
     private PlayerManager playerManager;
-    private Item [] storeItem = new Item [6];
+    private Item[] storeItem;
 
     //{이름, 효과, 설명, 가격, 증가시키는 }
     private string[,] item = {
@@ -19,16 +19,27 @@ public class GameManager
         { "스파르타의 갑옷", "방어력 +15", "스파르타의 전사들이 사용했다는 전설의 갑옷입니다.", "3500", "Def", "15"},
         { "낡은 검", "공격력 +2", "쉽게 볼 수 있는 낡은 검 입니다.", "600", "Atk", "2"},
         { "청동 도끼", "공격력 +5", "어디선가 사용되던 것 같은 도끼입니다.", "1500", "Atk", "5"},
-        { "스파르타의 창", "공격력 +7", "스파르타의 전사들이 사용했다는 전설의 창입니다.", "3500", "Atk", "7"}
+        { "스파르타의 창", "공격력 +7", "스파르타의 전사들이 사용했다는 전설의 창입니다.", "3500", "Atk", "7"},
+        { "HP포션", "체력 +20", "스파트라의 국민음료. 피로 만들어졌다는 소문이 있습니다...", "300", "HP", "20"}
     };
 
     public GameManager(Player player, PlayerManager playerManager)
 	{
+        storeItem = new Item[item.GetLength(0)];
+
         this.player = player;
         this.playerManager = playerManager;
-        for (int i = 0; i< 6; i++)
+
+        for (int i = 0; i< storeItem.Length; i++)
         {
-            storeItem[i] = new Item(item[i, 0],item[i, 1], item[i, 2], int.Parse(item[i, 3]), item[i, 4], int.Parse(item[i, 5]));
+            storeItem[i] = new Item(
+                item[i, 0],
+                item[i, 1],
+                item[i, 2],
+                int.Parse(item[i, 3]),
+                item[i, 4],
+                int.Parse(item[i, 5])
+            );
         }
     }
 
@@ -289,7 +300,7 @@ public class GameManager
         Console.Clear();
         int cost = 500;
         Console.WriteLine("휴식");
-        Console.WriteLine($"{cost} G 를 내면 체력을 회복할 수 있습니다.");
+        Console.WriteLine($"{cost} G 를 내면 체력을 회복할 수 있습니다. (현재 보유 골드: {player.Gold})");
         Console.WriteLine();
         Console.WriteLine("1. 휴식하기");
         Console.WriteLine("0. 나가기");

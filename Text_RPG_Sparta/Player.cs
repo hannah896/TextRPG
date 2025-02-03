@@ -12,6 +12,7 @@ public class Player
     private int level = 0;
     private	int atk = 0;
 	private int hp = 0;
+	private int maxHp = 0;
 	private int def = 0;
 	private int gold = 0;
     private int itemEffect_atk = 0;
@@ -27,21 +28,37 @@ public class Player
         this.level = 1;
         this.job = "전사";
         this.hp = 100;
+        this.maxHp = 100;
         this.def = 5;
         this.atk = 10;
-		this.gold = 30000;
-        inventory = new Item[6];
+		this.gold = 1000;
+        inventory = new Item[10];
 		equipItem = new Item[2, 3];
     }
-    public Player(string name)
+    public Player(string name, string job)
 	{
 		this.name = name;
-		this.level = 1;
-		this.job = "전사";
-		this.hp = 100;
-		this.def = 5;
-		this.atk = 10;
-		this.gold = 1500;
+		this.job = job;
+        this.level = 1;
+        this.gold = 1500;
+        if (job == "전사")
+		{
+            this.hp = 100;
+            this.def = 10;
+            this.atk = 10;
+        }
+		else if (job == "도적")
+		{
+            this.hp = 80;
+            this.def = 5;
+            this.atk = 20;
+        }
+		else if (job == "마법사")
+		{
+            this.hp = 90;
+            this.def = 10;
+            this.atk = 25;
+        }
 	}
 
 	//프로퍼티
@@ -87,7 +104,13 @@ public class Player
         set { hp = value; }
 	}
 
-	public int ItemEffect_atk
+    public int MaxHp
+    {
+        get { return maxHp; }
+        set { maxHp = value; }
+    }
+
+    public int ItemEffect_atk
 	{
 		get { return itemEffect_atk; }
 		set { itemEffect_atk = value; }

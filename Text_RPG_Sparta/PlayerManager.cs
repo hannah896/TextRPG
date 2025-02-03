@@ -125,10 +125,9 @@ public class PlayerManager
     //인벤토리의 아이템 갯수 체크
     public int [] InventoryCount()
     {
+        int[] inven = new int [player.Inventory.Length];
 
-        int[] inven = new int [6];
-
-        for (int i=0;i<6;i++)
+        for (int i=0;i<inven.Length; i++)
         {
             if (player.Inventory[i] != null)
             {
@@ -224,5 +223,14 @@ public class PlayerManager
             }
         }
         return false;
+    }
+
+    //인벤토리 정렬
+    public void SortInven()
+    {
+        int length = player.Inventory.Length;
+        int[] inventory = InventoryCount();
+
+
     }
 }
