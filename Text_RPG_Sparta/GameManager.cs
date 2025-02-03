@@ -48,13 +48,9 @@ public class GameManager
 
         command = InputCommand();
 
-        Console.Clear();
-        Console.WriteLine($"[{doing[command - 1]}]");
         //1. 상태보기
         if (command == 1)
         {
-            Console.WriteLine("캐릭터의 정보가 표시됩니다.");
-            Console.WriteLine();
             State();
         }
 
@@ -119,21 +115,53 @@ public class GameManager
     //인벤토리 페이지
     public void Inventory()
     {
-        playerManager.ShowInventory();
+        Console.Clear();
 
-        Console.WriteLine("1. 장착관리");
-        Console.WriteLine("0. 나가기");
+        playerManager.ShowInventory(false);
+
         
         int command = InputCommand();
-
+        //나가기
         if (command == 0)
         {
             Console.Clear();
         }
+
+        //인벤토리 장착관리
         else if (command == 1)
         {
-            playerManager.EqualManager();
+            int[] invenItem = playerManager.InventoryCount();
+
+            while (true)
+            {
+                Console.Clear();
+                playerManager.ShowInventory(true);
+
+                //
+                int commend = InputCommand();
+                int commendIdx = commend - 1;
+
+                //존재하는 아이템인 경우
+                if (commend == 0)
+                {
+                    Console.Clear();
+                    break;
+
+                }
+                else if (invenItem[commendIdx] == 1)
+                {
+                    playerManager.EqualManager(commendIdx);
+                }
+
+                //잘못된 숫자를 입력한 경우
+                else
+                {
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(900);
+                }
+            }
         }
+
     }
 
     //상점 페이지

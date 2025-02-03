@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 
 /// <summary>
 /// Summary description for Class1
@@ -13,8 +14,11 @@ public class Player
 	private int hp = 0;
 	private int def = 0;
 	private int gold = 0;
-	private Item[] inventory;
-	private Item[] equipItem;
+    private int itemEffect_atk = 0;
+    private int itemEffect_def = 0;
+
+	private Item[]? inventory;
+	private Item[,]? equipItem;
 
 	//생성자
 	public Player()
@@ -26,9 +30,8 @@ public class Player
         this.def = 5;
         this.atk = 10;
 		this.gold = 30000;
-		int itemCount = 5;
         inventory = new Item[6];
-		equipItem = new Item[6];
+		equipItem = new Item[2, 3];
     }
     public Player(string name)
 	{
@@ -63,7 +66,7 @@ public class Player
 	public int Atk
 	{
 		get { return atk; }
-        protected set { atk = value; }
+        set { atk = value; }
 	}
 
 	public int Gold
@@ -75,7 +78,7 @@ public class Player
 	public int Def
 	{
 		get { return def; }
-        protected set { def = value; }
+        set { def = value; }
 	}
 	
 	public int Hp
@@ -84,15 +87,29 @@ public class Player
         protected set { hp = value; }
 	}
 
+	public int ItemEffect_atk
+	{
+		get { return itemEffect_atk; }
+		set { itemEffect_atk = value; }
+	}
+
+    public int ItemEffect_def
+    {
+        get { return itemEffect_def; }
+        set { itemEffect_def = value; }
+    }
+
     public Item [] Inventory
 	{
 		get { return  inventory; }
         protected set { inventory = value; }
 	}
 
-	public Item[] EquipItem
+	public Item[,] EquipItem
 	{
 		get { return equipItem; }
-        protected set { equipItem = value; }
+        set { equipItem = value; }
 	}
+
+
 }

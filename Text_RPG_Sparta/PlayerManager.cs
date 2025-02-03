@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+using System;
+using System.Diagnostics.Metrics;
 
 /// <summary>
 /// Summary description for Class1
@@ -13,44 +15,166 @@ public class PlayerManager
         this.player = player;
     }
     
+
     //상태 보여주기
     public void ShowState()
     {
+        Console.Clear();
+        Console.WriteLine("[상태 보기]");
+        Console.WriteLine("캐릭터의 정보가 표시됩니다.");
+        Console.WriteLine();
         Console.WriteLine($"Lv. {player.Level}");
         Console.WriteLine($"{player.Name} ( {player.Job} )");
-        Console.WriteLine($"공격력: {player.Atk}");
-        Console.WriteLine($"방어력: {player.Def}");
+        Console.Write($"공격력: {player.Atk}  ");
+        Console.WriteLine($"(+{player.ItemEffect_atk})");
+        Console.Write($"방어력: {player.Def}  ");
+        Console.WriteLine($"(+{player.ItemEffect_def})");
         Console.WriteLine($"체 력 : {player.Hp}");
         Console.WriteLine($"Gold  : {player.Gold}");
         Console.WriteLine();
         Console.WriteLine("0. 나가기");
     }
 
+
     //장착관리
-    public void EqualManager()
+    public void EqualManager(int commend)
     {
-        ShowInventory();
-        Console.WriteLine();
+        Item item = player.Inventory[commend];
+        //아이템 장착하기 
+        if (item.isEquip == false)
+        {
+            //아이템 장착 활성화
+            item.isEquip = true;
+            //무기일 때
+            if (item.Effect == "Atk")
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (player.EquipItem[0, i] != null)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        player.EquipItem[0, i] = item;
+                        player.Atk += item.EffectValue;
+                        player.ItemEffect_atk += item.EffectValue;
+                        break;
+                    }
+                }
+            }
+
+            //방어구일 때
+            else if (item.Effect == "Def")
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (player.EquipItem[1, i] != null)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        player.EquipItem[1, i] = item;
+                        player.Def += item.EffectValue;
+                        player.ItemEffect_def += item.EffectValue;
+                        break;
+                    }
+                }
+            }
+            Console.WriteLine($"{item.Name} 을 장착하였습니다.");
+        }
+        //아이템 장착 해제하기
+        else
+        {
+            item.isEquip = false;
+            //무기일때
+            if (item.Effect == "Atk")
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (player.EquipItem[0, i] == item)
+                    {
+                        player.EquipItem[0, i] = null;
+                        player.Atk -= item.EffectValue;
+                        player.ItemEffect_atk -= item.EffectValue;
+                    }
+                }
+            }
+
+            //방어구일 때
+            else if (item.Effect == "Def")
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (player.EquipItem[1, i] == item)
+                    {
+                        player.EquipItem[1, i] = null;
+                        player.Def -= item.EffectValue;
+                        player.ItemEffect_def -= item.EffectValue;
+                    }
+                }
+            }
+
+            Console.WriteLine($"{item.Name} 의 장착을 해제하였습니다.");
+        }
+
+
+    }
+
+    //인벤토리의 아이템 갯수 체크
+    public int [] InventoryCount()
+    {
+
+        int[] inven = new int [6];
+
+        for (int i=0;i<6;i++)
+        {
+            if (player.Inventory[i] != null)
+            {
+                inven[i] = 1;
+            }
+            else
+            {
+                inven[i] = 0;
+            }
+        }
+        return inven;
     }
 
     //인벤토리 아이템 보여주기
-    public void ShowInventory()
+    public void ShowInventory(bool itemEquip)
     {
         Console.Clear();
-        Console.WriteLine("[인벤토리]");
+        //인벤토리 정렬과정 만들기
+
+
+        Console.Write("[인벤토리]");
+        if (itemEquip == true)
+        {
+            Console.Write(" - 장착 관리");
+        }
+        Console.WriteLine();
         Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
         Console.WriteLine();
         Console.WriteLine("[아이템 목록]");
         for (int i = 0; i < player.Inventory.Length; i++)
         {
+            //비어있는 아이템칸은 스킵
             if (player.Inventory[i] == null)
             {
                 continue;
             }
+            //아이템 목록 출력
             else
             {
-                //아이템 목록 출력하는거
-                Console.Write($"- {i + 1}. ");
+                Console.Write("- ");
+                //장착관리에 들어갈때만 뜨게함
+                if (itemEquip == true)
+                {
+                    Console.Write($"{i + 1}. ");
+                }
+                //장착한 장비만 [E]가 뜨게 함
                 if (player.Inventory[i].isEquip == true)
                 {
                     Console.Write($"[E]");
@@ -58,15 +182,19 @@ public class PlayerManager
 
                 Console.SetCursorPosition(10, (4 + i));
                 Console.Write($"{player.Inventory[i].Name}");
-                Console.SetCursorPosition(24, (4 + i));
+                Console.SetCursorPosition(25, (4 + i));
                 Console.Write($"|{player.Inventory[i].EffectDescription}");
                 Console.SetCursorPosition(37, (4 + i));
                 Console.Write($"|{player.Inventory[i].Description}");
                 Console.WriteLine();
             }
-
         }
         Console.WriteLine();
+        if (itemEquip == false)
+        {
+            Console.WriteLine("1. 장착관리");
+        }
+        Console.WriteLine("0. 나가기");
     }
 
 
@@ -95,7 +223,6 @@ public class PlayerManager
                 return true;
             }
         }
-        Console.WriteLine("인벤토리가 가득찼습니다.");
         return false;
     }
 }
