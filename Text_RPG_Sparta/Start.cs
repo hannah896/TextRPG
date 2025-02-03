@@ -67,20 +67,29 @@ namespace Text_RPG_Sparta
                 Console.WriteLine("2. 취소");
                 Console.WriteLine();
                 Console.Write("원하시는 행동을 입력해주세요.\n>>>");
-                int command = int.Parse(Console.ReadLine()); 
-                if (command == 1)
+                try
                 {
-                    return name;
+                    int command = int.Parse(Console.ReadLine());
+                    if (command == 1)
+                    {
+                        return name;
+                    }
+                    else if (command == 2)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        Console.WriteLine("잘못된 입력입니다.");
+                        Thread.Sleep(500);
+                    }
                 }
-                else if (command == 2)
-                {
-                    continue;
-                }
-                else
+                catch (FormatException)
                 {
                     Console.WriteLine("잘못된 입력입니다.");
                     Thread.Sleep(500);
                 }
+
             }
         }
 
@@ -99,36 +108,51 @@ namespace Text_RPG_Sparta
                 }
                 Console.WriteLine();
                 Console.Write("원하시는 직업의 번호를 입력해주세요.\n>>>");
-                int command = int.Parse(Console.ReadLine()) - 1;
-                if ((command < 0)||(command>=job.Length))
-                {
-                    Console.WriteLine("잘못된 입력입니다.");
-                    Thread.Sleep(500);
-                }
-                else
-                {
-                    Console.WriteLine($"선택하신 직업은 {job[command]} 입니다.");
 
-                    Console.WriteLine("1. 네");
-                    Console.WriteLine("2. 아니요");
-                    Console.WriteLine();
-                    Console.Write("원하시는 행동을 입력해주세요.\n>>>");
+                //입력이 숫자로 들어왔을때
+                try
+                {
+                    int command = int.Parse(Console.ReadLine()) - 1;
 
-                    int commend = int.Parse(Console.ReadLine());
-                    if (commend == 1)
-                    {
-                        return job[command];
-                    }
-                    else if (commend == 2)
-                    {
-                        continue;
-                    }
-                    else
+                    if ((command < 0) || (command >= job.Length))
                     {
                         Console.WriteLine("잘못된 입력입니다.");
                         Thread.Sleep(500);
                     }
+                    else
+                    {
+                        Console.WriteLine($"선택하신 직업은 {job[command]} 입니다.");
+
+                        Console.WriteLine("1. 네");
+                        Console.WriteLine("2. 아니요");
+                        Console.WriteLine();
+                        Console.Write("원하시는 행동을 입력해주세요.\n>>>");
+
+                        int commend = int.Parse(Console.ReadLine());
+                        if (commend == 1)
+                        {
+                            return job[command];
+                        }
+                        else if (commend == 2)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            Console.WriteLine("잘못된 입력입니다.");
+                            Thread.Sleep(500);
+                        }
+                    }
                 }
+
+                //숫자가 아니라 문자로 입력을 잘못한 경우
+                catch (FormatException)
+                {
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(500);
+                }
+
+
             }
         }
     }
