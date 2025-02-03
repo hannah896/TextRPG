@@ -8,7 +8,7 @@ using System.Diagnostics.Metrics;
 public class PlayerManager
 {
     private Player player;
-    
+
     //생성자
     public PlayerManager(Player player)
     {
@@ -25,10 +25,19 @@ public class PlayerManager
         Console.WriteLine();
         Console.WriteLine($"Lv. {player.Level}");
         Console.WriteLine($"{player.Name} ( {player.Job} )");
+
         Console.Write($"공격력: {player.Atk}  ");
-        Console.WriteLine($"(+{player.ItemEffect_atk})");
+        if (player.ItemEffect_atk > 0)
+        {
+            Console.Write($"(+{player.ItemEffect_atk})");
+        }
+        Console.WriteLine();
         Console.Write($"방어력: {player.Def}  ");
-        Console.WriteLine($"(+{player.ItemEffect_def})");
+        if (player.ItemEffect_def > 0)
+        {
+            Console.Write($"(+{player.ItemEffect_def})");
+        }
+        Console.WriteLine();
         Console.WriteLine($"체 력 : {player.Hp}");
         Console.WriteLine($"Gold  : {player.Gold}");
         Console.WriteLine();
@@ -122,7 +131,7 @@ public class PlayerManager
 
     }
 
-    //인벤토리의 아이템 갯수 체크
+    //인벤토리의 아이템의 갯수 배열리턴
     public int [] InventoryCount()
     {
         int[] inven = new int [player.Inventory.Length];
@@ -141,12 +150,13 @@ public class PlayerManager
         return inven;
     }
 
+
     //인벤토리 아이템 보여주기
     public void ShowInventory(bool itemEquip)
     {
         Console.Clear();
-        //인벤토리 정렬과정 만들기
-
+        //인벤토리 정렬과정
+        SortInven();
 
         Console.Write("[인벤토리]");
         if (itemEquip == true)
@@ -193,9 +203,11 @@ public class PlayerManager
         {
             Console.WriteLine("1. 장착관리");
         }
+
         Console.WriteLine("0. 나가기");
     }
 
+    
 
     //이름을 다시 짓기
     public void ReName()
@@ -228,9 +240,24 @@ public class PlayerManager
     //인벤토리 정렬
     public void SortInven()
     {
-        int length = player.Inventory.Length;
-        int[] inventory = InventoryCount();
+        int lastMemoryidx = 0;
 
-
+        for (int i=0; i< player.Inventory.Length -1; i++)
+        {
+            if ((player.Inventory[i] == null)&&(player.Inventory[i+1] != null))
+            {
+                player.Inventory[lastMemoryidx] = player.Inventory[i + 1];
+                player.Inventory[i + 1] = null;
+                lastMemoryidx++;
+            }
+            else if ((player.Inventory[i] == null) && (player.Inventory[i + 1] == null))
+            {
+                continue;
+            }
+            else
+            {
+                lastMemoryidx = i;
+            }
+        }
     }
 }

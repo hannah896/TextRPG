@@ -7,29 +7,28 @@ namespace Text_RPG_Sparta
     {
         static void Main(string[] args)
         {
-            ////디버깅와 실행과 동작을 확인할때 사용할 것
-            //Player player = new Player();
-            //PlayerManager playerManager = new PlayerManager(player);
-            //GameManager gameManager = new GameManager(player, playerManager);
-            Player player;
-            //실제동작될때
-            while (true)
-            {
-                Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
-                Console.WriteLine("1. 캐릭터를 생성하기");
-                Console.WriteLine("0. 종료하기");
-                Console.Write("\n>>>");
-                int command = int.Parse(Console.ReadLine());
-                if (command == 1)
-                {
-                    player = MakeCharacter();
-                    break;
-                }
-                else if (command == 0)
-                {
-                    Environment.Exit(0);
-                }
-            }
+            //디버깅와 실행과 동작을 확인할때 사용할 것
+            Player player = new Player();
+
+            ////캐릭터 생성하는것부터 시작하는거!!!
+            //Player player;
+            //while (true)
+            //{
+            //    Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
+            //    Console.WriteLine("1. 캐릭터를 생성하기");
+            //    Console.WriteLine("0. 종료하기");
+            //    Console.Write("\n>>>");
+            //    int command = int.Parse(Console.ReadLine());
+            //    if (command == 1)
+            //    {
+            //        player = MakeCharacter();
+            //        break;
+            //    }
+            //    else if (command == 0)
+            //    {
+            //        Environment.Exit(0);
+            //    }
+            //}
 
             PlayerManager playerManager = new PlayerManager(player);
             GameManager gameManager = new GameManager(player, playerManager);
@@ -62,7 +61,7 @@ namespace Text_RPG_Sparta
                 string name = Console.ReadLine();
                 Console.WriteLine();
                 Console.WriteLine($"입력하신 이름은 {name} 입니다.");
-
+                Console.WriteLine();
                 Console.WriteLine("1. 저장");
                 Console.WriteLine("2. 취소");
                 Console.WriteLine();
@@ -92,7 +91,7 @@ namespace Text_RPG_Sparta
 
             }
         }
-
+        //직업 선택
         static String JobChoice()
         {
             while(true)
@@ -121,8 +120,8 @@ namespace Text_RPG_Sparta
                     }
                     else
                     {
-                        Console.WriteLine($"선택하신 직업은 {job[command]} 입니다.");
-
+                        Console.WriteLine($"\n선택하신 직업은 {job[command]} 입니다.");
+                        Console.WriteLine();
                         Console.WriteLine("1. 네");
                         Console.WriteLine("2. 아니요");
                         Console.WriteLine();

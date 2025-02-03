@@ -22,6 +22,8 @@ public class Player
 	private Item[,]? equipItem;
 
 	//생성자
+	
+	//개발자용 테스터 생성자
 	public Player()
     {
         this.name = "James";
@@ -31,7 +33,7 @@ public class Player
         this.maxHp = 100;
         this.def = 5;
         this.atk = 10;
-		this.gold = 1000;
+		this.gold = 50000;
         inventory = new Item[10];
 		equipItem = new Item[2, 3];
     }
