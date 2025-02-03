@@ -164,6 +164,8 @@ public class PlayerManager
         Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
         Console.WriteLine();
         Console.WriteLine("[아이템 목록]");
+        ShowInven();
+        Console.WriteLine();
         for (int i = 0; i < player.Inventory.Length; i++)
         {
             //비어있는 아이템칸은 스킵
@@ -186,16 +188,17 @@ public class PlayerManager
                     Console.Write($"[E]");
                 }
 
-                Console.SetCursorPosition(10, (4 + i));
+                Console.SetCursorPosition(10, (6 + i));
                 Console.Write($"{player.Inventory[i].Name}");
-                Console.SetCursorPosition(25, (4 + i));
+                Console.SetCursorPosition(25, (6 + i));
                 Console.Write($"|{player.Inventory[i].EffectDescription}");
-                Console.SetCursorPosition(37, (4 + i));
+                Console.SetCursorPosition(37, (6 + i));
                 Console.Write($"|{player.Inventory[i].Description}");
                 Console.WriteLine();
             }
         }
         Console.WriteLine();
+
         if (itemEquip == false)
         {
             Console.WriteLine("1. 장착관리");
@@ -254,7 +257,6 @@ public class PlayerManager
     public void SortInven()
     {
         int lastMemoryidx = -1;
-        ShowInven();
         for (int i=0; i< player.Inventory.Length -1; i++)
         {
             //앞뒤로 null일떄

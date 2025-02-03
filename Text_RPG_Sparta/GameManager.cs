@@ -20,7 +20,7 @@ public class GameManager
         { "낡은 검", "공격력 +2", "쉽게 볼 수 있는 낡은 검 입니다.", "600", "Atk", "2"},
         { "청동 도끼", "공격력 +5", "어디선가 사용되던 것 같은 도끼입니다.", "1500", "Atk", "5"},
         { "스파르타의 창", "공격력 +7", "스파르타의 전사들이 사용했다는 전설의 창입니다.", "3500", "Atk", "7"},
-        { "HP포션", "체력 +20", "스파트라 전사들이 환장하는 국민 음료...", "300", "HP", "20"}
+        { "HP 포션", "체력 +20", "스파트라 전사들이 환장한다는 스파트라 국민 음료입니다...", "300", "HP", "20"}
     };
 
     public GameManager(Player player, PlayerManager playerManager)
@@ -182,6 +182,7 @@ public class GameManager
             if (command == 0)
             {
                 Console.Clear();
+                break;
             }
             //아이템구매
             else if (command == 1)
@@ -324,7 +325,7 @@ public class GameManager
             Console.Write($"|{storeItem[i].EffectDescription}");
             Console.SetCursorPosition(37, (8 + i));
             Console.Write($"|{storeItem[i].Description}");
-            Console.SetCursorPosition(88, (8 + i));
+            Console.SetCursorPosition(95, (8 + i));
             if (storeItem[i].isSold == false)
             {
                 Console.Write($"|{storeItem[i].Price} G");
