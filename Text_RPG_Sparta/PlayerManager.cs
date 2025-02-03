@@ -237,23 +237,39 @@ public class PlayerManager
         return false;
     }
 
+    //정렬오류때문에 확인하려고 만든 시각적 배열
+    public void ShowInven()
+    {
+        int[] inven = InventoryCount();
+        for (int i=0; i< inven.Length; i++) 
+        {
+            if (inven[i] == 0)
+            {
+                Console.Write("□");
+            }
+            else
+            {
+                Console.Write("■");
+            }
+        }
+        Console.WriteLine() ;
+    }
+
     //인벤토리 정렬
     public void SortInven()
     {
-        int lastMemoryidx = 0;
-
+        int lastMemoryidx = -1;
+        ShowInven();
         for (int i=0; i< player.Inventory.Length -1; i++)
         {
+            //앞뒤로 null일떄
             if ((player.Inventory[i] == null)&&(player.Inventory[i+1] != null))
             {
-                player.Inventory[lastMemoryidx] = player.Inventory[i + 1];
+                player.Inventory[lastMemoryidx + 1] = player.Inventory[i + 1];
                 player.Inventory[i + 1] = null;
                 lastMemoryidx++;
             }
-            else if ((player.Inventory[i] == null) && (player.Inventory[i + 1] == null))
-            {
-                continue;
-            }
+            //인벤토리에 아이템이 있을때
             else
             {
                 lastMemoryidx = i;

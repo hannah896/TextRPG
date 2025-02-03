@@ -204,6 +204,14 @@ public class GameManager
                         Item seleteItem = storeItem[commend - 1];
                         BuyItem(seleteItem);
                     }
+                    else if (commend == 924)
+                    {
+                        for (int i = 0; i< storeItem.Length; i++)
+                        {
+                            Item seleteItem = storeItem[i];
+                            BuyItem(seleteItem);
+                        }
+                    }
                     //잘못된 번호를 입력
                     else
                     {
@@ -246,7 +254,8 @@ public class GameManager
     private void ShowInventory(bool isSell)
     {
         Console.Clear();
-        Console.WriteLine("[상점]");
+        Console.Write("[상점]");
+        Console.WriteLine(" - 아이템 판매");
         Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
         Console.WriteLine();
         
@@ -288,7 +297,13 @@ public class GameManager
     private void ShowItem(bool isbuy)
     {
         Console.Clear();
-        Console.WriteLine("[상점]");
+        Console.Write("[상점]");
+        if (isbuy == true)
+        {
+            Console.Write(" - 아이템구매");
+        }
+        Console.WriteLine();
+        Console.WriteLine();
         Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
         Console.WriteLine();
         bool isBuy = isbuy;
@@ -303,13 +318,13 @@ public class GameManager
             {
                 Console.Write($" {i + 1}. ");
             }
-            Console.SetCursorPosition(7, (7 + i));
+            Console.SetCursorPosition(7, (8 + i));
             Console.Write($"{storeItem[i].Name}");
-            Console.SetCursorPosition(24, (7 + i));
+            Console.SetCursorPosition(24, (8 + i));
             Console.Write($"|{storeItem[i].EffectDescription}");
-            Console.SetCursorPosition(37, (7 + i));
+            Console.SetCursorPosition(37, (8 + i));
             Console.Write($"|{storeItem[i].Description}");
-            Console.SetCursorPosition(88, (7 + i));
+            Console.SetCursorPosition(88, (8 + i));
             if (storeItem[i].isSold == false)
             {
                 Console.Write($"|{storeItem[i].Price} G");
@@ -378,7 +393,6 @@ public class GameManager
         }
         else
         {
-            
             //인벤토리의 해당아이템 null
             player.Inventory[idx] = null;
             //아이템의 판매여부
