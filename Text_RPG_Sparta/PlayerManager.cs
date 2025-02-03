@@ -14,7 +14,6 @@ public class PlayerManager
     {
         this.player = player;
     }
-    
 
     //상태 보여주기
     public void ShowState()
@@ -43,7 +42,6 @@ public class PlayerManager
         Console.WriteLine();
         Console.WriteLine("0. 나가기");
     }
-
 
     //장착관리
     public void EqualManager(int commend)
@@ -150,7 +148,6 @@ public class PlayerManager
         return inven;
     }
 
-
     //인벤토리 아이템 보여주기
     public void ShowInventory(bool itemEquip)
     {
@@ -206,8 +203,6 @@ public class PlayerManager
 
         Console.WriteLine("0. 나가기");
     }
-
-    
 
     //이름을 다시 짓기
     public void ReName()
