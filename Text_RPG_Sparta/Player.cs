@@ -84,7 +84,7 @@ public class Player
 	public int Hp
 	{
 		get { return hp; }
-        protected set { hp = value; }
+        set { hp = value; }
 	}
 
 	public int ItemEffect_atk

@@ -8,9 +8,6 @@
             PlayerManager playerManager = new PlayerManager(player);
             GameManager gameManager = new GameManager(player, playerManager);
 
-            
-
-
             while (true)
             {
                 //마을에 시작할때
