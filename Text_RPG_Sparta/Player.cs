@@ -109,7 +109,7 @@ public class Player
     public int MaxHp
     {
         get { return maxHp; }
-        set { maxHp = value; }
+        private set { maxHp = value; }
     }
 
     public int ItemEffect_atk

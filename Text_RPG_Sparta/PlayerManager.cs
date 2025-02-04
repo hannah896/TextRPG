@@ -68,6 +68,8 @@ public class PlayerManager
                 player.EquipItem[0, 0] = item;
                 player.Atk += item.EffectValue;
                 player.ItemEffect_atk += item.EffectValue;
+
+                Console.WriteLine($"{item.Name} 을 장착하였습니다.");
             }
 
             //방어구일 때
@@ -86,8 +88,24 @@ public class PlayerManager
                 player.EquipItem[1, 0] = item;
                 player.Atk += item.EffectValue;
                 player.ItemEffect_atk += item.EffectValue;
+
+                Console.WriteLine($"{item.Name} 을 장착하였습니다.");
             }
-            Console.WriteLine($"{item.Name} 을 장착하였습니다.");
+
+            //회복형 아이템(소모형)인 경우
+            else if (item.Effect == "HP")
+            {
+                player.Inventory[commend] = null;
+                player.Hp += 20;
+                //체력이 최대 체력을 오버했다면 최대체력으로 바꿔줌.
+                if (player.Hp > player.MaxHp)
+                {
+                    player.Hp = player.MaxHp;
+                }
+                
+                Console.WriteLine($"{item.Name} 을 사용했습니다.");
+            }
+            
         }
         //아이템 장착 해제하기
         else
