@@ -35,7 +35,7 @@ public class GameManager
     };
 
     public GameManager(Player player, PlayerManager playerManager)
-	{
+    {
         this.DManager = new DungeonManager(player);
 
         this.player = player;
@@ -43,7 +43,7 @@ public class GameManager
 
         storeItem = new Item[item.GetLength(0)];
         //아이템 목록 상점아이템으로 이동
-        for (int i = 0; i< storeItem.Length; i++)
+        for (int i = 0; i < storeItem.Length; i++)
         {
             storeItem[i] = new Item(
                 item[i, 0],
@@ -58,17 +58,17 @@ public class GameManager
 
     //마을 페이지
     public void Villiage()
-	{
+    {
         Console.Clear();
-        string[] doing = { "상태 보기", "인벤토리", "상점", "던전입장", "휴식하기"};
+        string[] doing = { "상태 보기", "인벤토리", "상점", "던전입장", "휴식하기" };
         int command;
 
         Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
         Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
-        
+
         for (int i = 0; i < doing.Length; i++)
         {
-            Console.WriteLine($"{i+1}. {doing[i]}");
+            Console.WriteLine($"{i + 1}. {doing[i]}");
         }
 
         command = InputCommand();
@@ -90,19 +90,19 @@ public class GameManager
         {
             Store();
         }
-        
+
         //4. 던전
         else if (command == 4)
         {
             Dungeon();
         }
-        
+
         //5. 휴식하기
         else if (command == 5)
         {
             Rest();
         }
-        
+
         //잘못된 입력을 하였을 때
         else
         {
@@ -140,7 +140,7 @@ public class GameManager
 
         playerManager.ShowInventory(false);
 
-        
+
         int command = InputCommand();
         //나가기
         if (command == 0)
@@ -278,6 +278,99 @@ public class GameManager
             }
         }
 
+    }
+    
+    //4. 던전입장
+    public void Dungeon()
+    {
+        bool isSuccess;
+        while (true)
+        {
+            Console.Clear();
+            DManager.ShowDungeon();
+
+            int command = InputCommand();
+            int idx = command - 1;
+
+            //나가기
+            if (command == 0)
+            {
+                break;
+            }
+
+            //던전에 입장
+            else if ((command > 0) && (command < 4))
+            {
+                isSuccess = DManager.EnterDungeon(idx);
+                //던전 클리어 실패시
+                if (isSuccess == false)
+                {
+                    while (true)
+                    {
+                        DManager.Fail();
+                        int commend = InputCommand();
+                        //나가기
+                        if (commend == 0) break;
+                    }
+
+                }
+                //던전 클리어 성공시
+                else
+                {
+                    while (true)
+                    {
+                        DManager.Success();
+                        int commend = InputCommand();
+                        //나가기
+                        if (commend == 0) break;
+                    }
+                }
+            }
+            //잘못된 입력 처리
+            else
+            {
+                Console.WriteLine("잘못된 입력입니다.");
+                Thread.Sleep(300);
+            }
+        }
+    }
+
+    //5. 휴식
+    public void Rest()
+    {
+        Console.Clear();
+        int cost = 500;
+        Console.WriteLine("휴식");
+        Console.WriteLine($"{cost} G 를 내면 체력을 회복할 수 있습니다. (현재 보유 골드: {player.Gold} G)");
+        Console.WriteLine();
+        Console.WriteLine("1. 휴식하기");
+        Console.WriteLine("0. 나가기");
+
+        int command = InputCommand();
+        //1. 휴식하기
+        if (command == 1)
+        {
+            //보유 금액이 모자랄 시
+            if (player.Gold < cost)
+            {
+                Console.WriteLine("Gold 가 부족합니다.");
+                Thread.Sleep(900);
+            }
+            //보유 금액이 충분할 시
+            else
+            {
+                player.Hp = 100;
+                playerManager.SpendMoney(cost);
+                Console.WriteLine("휴식을 완료했습니다");
+                Thread.Sleep(900);
+            }
+        }
+        //0. 나가기
+        else if (command == 0)
+        {
+            Console.WriteLine("마을로 돌아갑니다.");
+            Thread.Sleep(900);
+        }
     }
 
     //상점에 내 인벤토리를 보여주는 메서드
@@ -441,98 +534,6 @@ public class GameManager
             playerManager.SortInven();
             Console.WriteLine("아이템을 판매했습니다.");
             Thread.Sleep(500);
-        }
-    }
-    
-    //4. 던전입장
-    public void Dungeon()
-    {
-        bool isSuccess;
-        while (true)
-        {
-            Console.Clear();
-            DManager.ShowDungeon();
-
-            int command = InputCommand();
-            int idx = command - 1;
-
-            //나가기
-            if (command == 0)
-            {
-                break;
-            }
-            //던전에 입장
-            else if ((command > 0) &&(command<4))
-            {
-                isSuccess = DManager.EnterDungeon(idx);
-                //던전 클리어 실패시
-                if (isSuccess == false)
-                {
-                    while(true)
-                    {
-                        DManager.Fail();
-                        int commend = InputCommand();
-                        //나가기
-                        if (commend == 0) break;
-                    }
-                    
-                }
-                //던전 클리어 성공시
-                else
-                {
-                    while (true)
-                    {
-                        DManager.Success();
-                        int commend = InputCommand();
-                        //나가기
-                        if (commend == 0) break;
-                    }
-                }
-            }
-            //잘못된 입력 처리
-            else
-            {
-                Console.WriteLine("잘못된 입력입니다.");
-                Thread.Sleep(300);
-            }
-        }
-    }
-
-    //5. 휴식
-    public void Rest()
-    {
-        Console.Clear();
-        int cost = 500;
-        Console.WriteLine("휴식");
-        Console.WriteLine($"{cost} G 를 내면 체력을 회복할 수 있습니다. (현재 보유 골드: {player.Gold} G)");
-        Console.WriteLine();
-        Console.WriteLine("1. 휴식하기");
-        Console.WriteLine("0. 나가기");
-
-        int command = InputCommand();
-        //1. 휴식하기
-        if (command == 1)
-        {
-            //보유 금액이 모자랄 시
-            if (player.Gold < cost)
-            {
-                Console.WriteLine("Gold 가 부족합니다.");
-                Thread.Sleep(900);
-            }
-            //보유 금액이 충분할 시
-            else
-            {
-                player.Hp = 100;
-                playerManager.SpendMoney(cost);
-                Console.WriteLine("휴식을 완료했습니다");
-                Thread.Sleep(900);
-            }
-        }
-        //0. 나가기
-        else if (command == 0)
-        {
-            Console.WriteLine("마을로 돌아갑니다.");
-            Thread.Sleep(900);
         }
     }
     

@@ -56,7 +56,6 @@ public class DungeonManager
             Console.WriteLine();
         }
         Console.WriteLine("0. 나가기");
-        
     }
 
     //던전 입장하기
@@ -116,6 +115,8 @@ public class DungeonManager
         Console.WriteLine("탐험결과");
         Console.WriteLine($"체력: {player.Hp + lostHP} -> {player.Hp}");
         Console.WriteLine($"Gold: {player.Gold - rewards} -> {player.Gold}");
+        Console.WriteLine();
+        Console.WriteLine("0. 나가기");
     }
 
     public void Fail()
@@ -123,10 +124,11 @@ public class DungeonManager
         Console.Clear();
         Console.WriteLine("던전 실패");
         Console.WriteLine();
-        Console.WriteLine($"{type}을 클리어하는데 실패하였습니다");
+        Console.WriteLine($"이런... {type}을 클리어하는데 실패하였습니다");
         Console.WriteLine();
         Console.WriteLine("탐험결과");
         Console.WriteLine($"체력: {player.Hp + lostHP} -> {player.Hp}");
         Console.WriteLine();
+        Console.WriteLine("0. 나가기");
     }
 }
