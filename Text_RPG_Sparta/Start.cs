@@ -150,8 +150,6 @@ namespace Text_RPG_Sparta
                     Console.WriteLine("잘못된 입력입니다.");
                     Thread.Sleep(500);
                 }
-
-
             }
         }
     }

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class DungeonManager
 {
     //key값= DungeonType, value = Dungeon을 갖는 딕셔너리 생성
-    private Dictionary<DungeonType, Dungeon> dungeonInfo = new Dictionary<DungeonType, Dungeon>();
     
+    private Dictionary<DungeonType, Dungeon> dungeonInfo = new Dictionary<DungeonType, Dungeon>();
     private DungeonType easy = DungeonType.Easy;
     private DungeonType normal = DungeonType.Normal;
     private DungeonType hard = DungeonType.Hard;
@@ -126,7 +126,7 @@ public class DungeonManager
         Console.Clear();
         Console.WriteLine("던전 실패");
         Console.WriteLine();
-        Console.WriteLine($"이런... {type}을 클리어하는데 실패하였습니다");
+        Console.WriteLine($"이런... {dungeonInfo[type].Name}을 클리어하는데 실패하였습니다");
         Console.WriteLine();
         Console.WriteLine("탐험결과");
         Console.WriteLine($"체력: {player.Hp + lostHP} -> {player.Hp}");
