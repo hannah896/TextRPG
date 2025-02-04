@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Xml.Linq;
 
 namespace Text_RPG_Sparta
 {
@@ -7,28 +6,25 @@ namespace Text_RPG_Sparta
     {
         static void Main(string[] args)
         {
-            //디버깅와 실행과 동작을 확인할때 사용할 것
-            Player player = new Player();
-
-            ////캐릭터 생성하는것부터 시작하는거!!!
-            //Player player;
-            //while (true)
-            //{
-            //    Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
-            //    Console.WriteLine("1. 캐릭터를 생성하기");
-            //    Console.WriteLine("0. 종료하기");
-            //    Console.Write("\n>>>");
-            //    int command = int.Parse(Console.ReadLine());
-            //    if (command == 1)
-            //    {
-            //        player = MakeCharacter();
-            //        break;
-            //    }
-            //    else if (command == 0)
-            //    {
-            //        Environment.Exit(0);
-            //    }
-            //}
+            //캐릭터 생성하는것부터 시작하는거!!!
+            Player player;
+            while (true)
+            {
+                Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
+                Console.WriteLine("1. 캐릭터를 생성하기");
+                Console.WriteLine("0. 종료하기");
+                Console.Write("\n>>>");
+                int command = int.Parse(Console.ReadLine());
+                if (command == 1)
+                {
+                    player = MakeCharacter();
+                    break;
+                }
+                else if (command == 0)
+                {
+                    Environment.Exit(0);
+                }
+            }
 
             PlayerManager playerManager = new PlayerManager(player);
             GameManager gameManager = new GameManager(player, playerManager);
@@ -51,7 +47,7 @@ namespace Text_RPG_Sparta
         }
 
         //이름 생성
-        static String MakeName()
+        static string MakeName()
         {
             while (true)
             {
@@ -92,7 +88,7 @@ namespace Text_RPG_Sparta
             }
         }
         //직업 선택
-        static String JobChoice()
+        static string JobChoice()
         {
             while(true)
             {
