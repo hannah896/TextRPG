@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|c:\\users\\phn22\\source\\repos\\text_rpg_sparta\\textrpg\\text_rpg_sparta\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|solutionrelative:text_rpg_sparta\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|c:\\users\\phn22\\source\\repos\\text_rpg_sparta\\textrpg\\text_rpg_sparta\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|solutionrelative:text_rpg_sparta\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|c:\\users\\phn22\\source\\repos\\text_rpg_sparta\\textrpg\\text_rpg_sparta\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|solutionrelative:text_rpg_sparta\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|c:\\users\\phn22\\source\\repos\\text_rpg_sparta\\textrpg\\text_rpg_sparta\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|solutionrelative:text_rpg_sparta\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|c:\\users\\phn22\\source\\repos\\text_rpg_sparta\\textrpg\\text_rpg_sparta\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|solutionrelative:text_rpg_sparta\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|c:\\users\\phn22\\source\\repos\\text_rpg_sparta\\textrpg\\text_rpg_sparta\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77E86807-5237-44DC-9686-EB78997BF427}|Text_RPG_Sparta\\Text_RPG_Sparta.csproj|solutionrelative:text_rpg_sparta\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,30 +30,69 @@
       "DocumentGroups": [
         {
           "DockedWidth": 356,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Player.cs",
+              "RelativeDocumentMoniker": "Text_RPG_Sparta\\Player.cs",
+              "ToolTip": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Player.cs",
+              "RelativeToolTip": "Text_RPG_Sparta\\Player.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAADwvxYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-03T11:30:50.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Item.cs",
+              "DocumentMoniker": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Item.cs",
+              "RelativeDocumentMoniker": "Text_RPG_Sparta\\Item.cs",
+              "ToolTip": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Item.cs",
+              "RelativeToolTip": "Text_RPG_Sparta\\Item.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAEMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-03T11:32:34.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Start.cs",
+              "DocumentMoniker": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Start.cs",
+              "RelativeDocumentMoniker": "Text_RPG_Sparta\\Start.cs",
+              "ToolTip": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\Start.cs",
+              "RelativeToolTip": "Text_RPG_Sparta\\Start.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-03T11:30:34.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "PlayerManager.cs",
               "DocumentMoniker": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\PlayerManager.cs",
               "RelativeDocumentMoniker": "Text_RPG_Sparta\\PlayerManager.cs",
               "ToolTip": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\PlayerManager.cs",
               "RelativeToolTip": "Text_RPG_Sparta\\PlayerManager.cs",
-              "ViewState": "AgIAAJoAAAAAAAAAAAAYwMEAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAIwE8AAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-01T12:04:31.535Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\GameManager.cs",
               "RelativeDocumentMoniker": "Text_RPG_Sparta\\GameManager.cs",
               "ToolTip": "C:\\Users\\phn22\\source\\repos\\Text_RPG_Sparta\\TextRPG\\Text_RPG_Sparta\\GameManager.cs",
               "RelativeToolTip": "Text_RPG_Sparta\\GameManager.cs",
-              "ViewState": "AgIAAHUAAAAAAAAAAAA0wMoAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAANEAAAAAAAAAAADwv/kAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-01T08:34:38.966Z",
               "EditorCaption": ""

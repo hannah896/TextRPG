@@ -55,39 +55,37 @@ public class PlayerManager
             //무기일 때
             if (item.Effect == "Atk")
             {
-                for (int i = 0; i < 3; i++)
+                //이미 다른 무기를 장착하였다면
+                if (player.EquipItem[0, 0] != null)
                 {
-                    if (player.EquipItem[0, i] != null)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        player.EquipItem[0, i] = item;
-                        player.Atk += item.EffectValue;
-                        player.ItemEffect_atk += item.EffectValue;
-                        break;
-                    }
+                    //해당 무기 장착을 해제함
+                    Item oldItem = player.EquipItem[0, 0];
+
+                    player.Atk -= oldItem.EffectValue;
+                    player.ItemEffect_atk -= oldItem.EffectValue;
+                    oldItem.isEquip = false;
                 }
+                player.EquipItem[0, 0] = item;
+                player.Atk += item.EffectValue;
+                player.ItemEffect_atk += item.EffectValue;
             }
 
             //방어구일 때
             else if (item.Effect == "Def")
             {
-                for (int i = 0; i < 3; i++)
+                //이미 다른 방어구를 장착하였다면
+                if (player.EquipItem[1, 0] != null)
                 {
-                    if (player.EquipItem[1, i] != null)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        player.EquipItem[1, i] = item;
-                        player.Def += item.EffectValue;
-                        player.ItemEffect_def += item.EffectValue;
-                        break;
-                    }
+                    //해당 방어구 장착을 해제함
+                    Item oldItem = player.EquipItem[1, 0];
+
+                    player.Def -= oldItem.EffectValue;
+                    player.ItemEffect_def -= oldItem.EffectValue;
+                    oldItem.isEquip = false;
                 }
+                player.EquipItem[1, 0] = item;
+                player.Atk += item.EffectValue;
+                player.ItemEffect_atk += item.EffectValue;
             }
             Console.WriteLine($"{item.Name} 을 장착하였습니다.");
         }
@@ -125,8 +123,6 @@ public class PlayerManager
 
             Console.WriteLine($"{item.Name} 의 장착을 해제하였습니다.");
         }
-
-
     }
 
     //인벤토리의 아이템의 갯수 배열리턴
@@ -235,7 +231,7 @@ public class PlayerManager
         return false;
     }
 
-    //정렬오류때문에 확인하려고 만든 시각적 배열
+    //원래는 정렬오류때문에 확인하려고 만든 시각적 배열
     public void ShowInven()
     {
         int[] inven = InventoryCount();

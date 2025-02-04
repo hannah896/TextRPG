@@ -35,7 +35,7 @@ public class Player
         this.atk = 10;
 		this.gold = 50000;
         inventory = new Item[10];
-		equipItem = new Item[2, 3];
+		equipItem = new Item[2, 1];
     }
     public Player(string name, string job)
 	{
@@ -135,6 +135,4 @@ public class Player
 		get { return equipItem; }
         set { equipItem = value; }
 	}
-
-
 }

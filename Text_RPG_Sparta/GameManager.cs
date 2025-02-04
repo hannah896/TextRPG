@@ -230,21 +230,26 @@ public class GameManager
 
                     int commend = InputCommand();
                     int idx = commend - 1;
-                    Item selItem = player.Inventory[idx];
+
                     //나가기
                     if (commend == 0)
                     {
                         break;
                     }
-                    //판매할 아이템이 존재한다면 판매
-                    else if (selItem != null)
+
+                    //팔려하는 아이템의 번호가 제대로 입력되었고 비어있는 인벤토리 칸이 아니라면
+                    else if ((-1 < idx)&&(idx< player.Inventory.Length)&&(player.Inventory[idx] != null))
                     {
+                        //아이템을 판매함.
+                        Item selItem = player.Inventory[idx];
                         SellItem(selItem, idx);
                     }
+                    
                     //잘못된 입력 처리
                     else
                     {
                         Console.WriteLine("잘못된 입력입니다.");
+                        Thread.Sleep(500);
                     }
                 }
             }
