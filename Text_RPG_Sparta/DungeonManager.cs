@@ -112,7 +112,7 @@ public class DungeonManager
         Console.Clear();
         Console.WriteLine("던전 클리어");
         Console.WriteLine();
-        Console.WriteLine($"{type}을 클리어하였습니다");
+        Console.WriteLine($"{dungeonInfo[type].Name}을 클리어하였습니다");
         Console.WriteLine();
         Console.WriteLine("탐험결과");
         Console.WriteLine($"체력: {player.Hp + lostHP} -> {player.Hp}");
