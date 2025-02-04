@@ -40,7 +40,29 @@ public class PlayerManager
         Console.WriteLine($"체 력 : {player.Hp}");
         Console.WriteLine($"Gold  : {player.Gold}");
         Console.WriteLine();
+        Console.WriteLine("1. 이름 다시 짓기");
         Console.WriteLine("0. 나가기");
+    }
+
+    //레벨업
+    public void LevelUp()
+    {
+        if (player.Exp == player.MaxExp)
+        {
+            //레벨업후 초기화
+            player.Level++;
+            player.Exp = 0;
+            player.MaxExp++;
+
+            //레벨업의 효과
+            player.Atk += 0.5f;
+            player.Def += 1;
+
+            Console.WriteLine("!!! Level UP !!!");
+            Console.WriteLine();
+            Console.WriteLine($"{player.Job} {player.Name}의 레벨이 올랐습니다!");
+            Console.WriteLine($"{player.Level-1} -> {player.Level}") ;
+        }
     }
 
     //장착관리
@@ -225,14 +247,6 @@ public class PlayerManager
         Console.WriteLine("0. 나가기");
     }
 
-    //이름을 다시 짓기
-    public void ReName()
-    {
-        Console.Write("플레이어 이름을 입력해주세요: ");
-        string name = Console.ReadLine();
-        player.Name = name;
-    }
-
     //사용골드 빠지기
     public void SpendMoney(int money)
     {
@@ -291,4 +305,13 @@ public class PlayerManager
             }
         }
     }
+
+    //이름을 다시 짓기
+    public void ReName()
+    {
+        Console.Write("플레이어 이름을 입력해주세요: ");
+        string name = Console.ReadLine();
+        player.Name = name;
+    }
+
 }

@@ -11,7 +11,7 @@ public class Item
     private string description;
     private string effect;
 
-    private int effectValue;
+    private float effectValue;
     private int price;
 
     public bool isSold = false;
@@ -54,7 +54,7 @@ public class Item
         get { return price; }
         set { price = value; }
     }
-    public int EffectValue
+    public float EffectValue
     {
         get { return effectValue; }
         private set { effectValue = value; }

@@ -14,9 +14,11 @@ public class DungeonManager
 
     private Player player;
 
-    private int lostHP;
+    private float diffDef;
+    private float lostHP;
+    
     private int rewards;
-    private int diffDef;
+
 
 
     //생성자
@@ -89,11 +91,11 @@ public class DungeonManager
         }
 
         //던전 클리어 시
-        lostHP = rand.Next(25 - diffDef, 35 - diffDef);
+        lostHP = rand.Next((int)(25.0f - diffDef), (int)(35.0f - diffDef));
         player.Hp -= lostHP;
 
         //공격력에 따른 보너스
-        float bonus = 0.01f * (100 + rand.Next(player.Atk, player.Atk * 2));
+        float bonus = 0.01f * (100 + rand.Next((int)player.Atk, (int)player.Atk * 2));
         
         //보상 총 계산
         float money = dungeonInfo[type].reward * bonus;

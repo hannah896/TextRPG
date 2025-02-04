@@ -59,6 +59,18 @@ public class GameManager
     //마을 페이지
     public void Villiage()
     {
+        //레벨업
+        if (player.MaxExp == player.Exp)
+        {
+            while (true)
+            {
+                Console.Clear();
+                playerManager.LevelUp();
+                Console.WriteLine("나가려면 1번을 눌러주세요");
+                int commend = InputCommand();
+                if (commend == 1) break;
+            }
+        }
         Console.Clear();
         string[] doing = { "상태 보기", "인벤토리", "상점", "던전입장", "휴식하기" };
         int command;
@@ -114,21 +126,25 @@ public class GameManager
     //1. 상태창 페이지
     public void State()
     {
-        Console.Clear();
-        playerManager.ShowState();
-
         while (true)
         {
+            Console.Clear();
+            playerManager.ShowState();
             int command = InputCommand();
             if (command == 0)
             {
                 Console.Clear();
                 break;
             }
+            else if (command == 1)
+            {
+                playerManager.ReName();
+                playerManager.SpendMoney(500);
+            }
             else
             {
                 Console.WriteLine("잘못된 입력입니다.");
-                Console.ReadLine();
+                Thread.Sleep(250);
             }
         }
     }
@@ -317,6 +333,7 @@ public class GameManager
                 //던전 클리어 성공시
                 else
                 {
+                    player.Exp++;
                     while (true)
                     {
                         DManager.Success();

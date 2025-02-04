@@ -4,8 +4,8 @@ using System.Globalization;
 public class Dungeon
 {
     private string name;
-    private int recommandDef;
-    private int recommandAtk;
+    private float recommandDef;
+    private float recommandAtk;
     public int reward;
 
     //생성자
@@ -23,12 +23,12 @@ public class Dungeon
         get { return name; }
         set { name = value; }
     }
-    public int RecommandDef
+    public float RecommandDef
     {
         get { return recommandDef; }
         private set { recommandDef = value; }
     }
-    public int RecommandAtk
+    public float RecommandAtk
     {
         get { return recommandAtk; }
         private set { recommandAtk = value; }
