@@ -30,7 +30,8 @@ public class Player
 		this.maxExp = 1;
 
         inventory = new Item[10];
-        
+        equipItem = new Item[2];
+
         if (job == "전사")
 		{
             this.hp = 100f;
@@ -72,6 +73,7 @@ public class Player
 		get { return level; }
         set { level = value; }
 	}
+
     public int Exp
     {
         get { return exp; }

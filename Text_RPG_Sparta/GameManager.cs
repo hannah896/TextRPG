@@ -1,9 +1,5 @@
 ﻿#nullable enable
 using System;
-using System.Data.SqlTypes;
-using System.Globalization;
-using System.Reflection.Metadata.Ecma335;
-using System.Xml.Serialization;
 public enum DungeonType
 {
     Easy,
@@ -13,13 +9,11 @@ public enum DungeonType
 
 public class GameManager
 {
-    //관리용 객체
     private Player player;
     private PlayerManager playerManager;
     private Item[] storeItem;
     private DungeonManager DManager;
 
-    //{이름, 효과, 설명, 가격, 증가시키는 }
     private string[,] item = {
         { "수련자 갑옷", "방어력 +5", "수련에 도움을 주는 갑옷입니다.", "1000", "Def", "5"},
         { "무쇠갑옷", "방어력 +9", "무쇠로 만들어져 튼튼한 갑옷입니다.", "1500", "Def", "9"},
@@ -56,16 +50,17 @@ public class GameManager
     public void Villiage()
     {
         //레벨업
-        if (player.MaxExp == player.Exp)
+        if (player.MaxExp <= player.Exp)
         {
-            while (true)
+            int commend;
+            do
             {
                 Console.Clear();
                 playerManager.LevelUp();
                 Console.WriteLine("나가려면 1번을 눌러주세요");
-                int commend = InputCommand();
-                if (commend == 1) break;
+                commend = InputCommand();
             }
+            while (commend != 1);
         }
         Console.Clear();
         string[] doing = { "상태 보기", "인벤토리", "상점", "던전입장", "휴식하기" };
@@ -122,230 +117,211 @@ public class GameManager
     //1. 상태창 페이지
     public void State()
     {
-        while (true)
+        int command;
+        do
         {
             Console.Clear();
             playerManager.ShowState();
-            int command = InputCommand();
-            if (command == 0)
-            {
-                Console.Clear();
-                break;
-            }
-            else if (command == 1)
+            command = InputCommand();
+
+            if (command == 1)
             {
                 playerManager.ReName();
                 playerManager.SpendMoney(500);
             }
-            else
-            {
-                Console.WriteLine("잘못된 입력입니다.");
-                Thread.Sleep(250);
-            }
         }
+        while (command != 0);
     }
 
     //2. 인벤토리 페이지
     public void Inventory()
     {
         Console.Clear();
-
+        int command;
         playerManager.ShowInventory(false);
-
-
-        int command = InputCommand();
-        //나가기
-        if (command == 0)
+        //입력받기
+        do
         {
-            Console.Clear();
-        }
+            command = InputCommand();
 
-        //인벤토리 장착관리
-        else if (command == 1)
-        {
-            int[] invenItem = playerManager.GetInventoryArray();
-
-            while (true)
+            //인벤토리 장착관리
+            if (command == 1)
             {
-                Console.Clear();
-                playerManager.ShowInventory(true);
+                int[] invenItem = playerManager.GetInventoryArray();
+                int commend;
 
-                //
-                int commend = InputCommand();
-                int commendIdx = commend - 1;
-
-                //존재하는 아이템인 경우
-                if (commend == 0)
+                do
                 {
                     Console.Clear();
-                    break;
+                    playerManager.ShowInventory(true);
 
-                }
-                else if (invenItem[commendIdx] == 1)
-                {
-                    playerManager.EquipManager(commendIdx);
-                }
+                    //
+                    commend = InputCommand();
 
-                //잘못된 숫자를 입력한 경우
-                else
-                {
-                    Console.WriteLine("잘못된 입력입니다.");
-                    Thread.Sleep(900);
+                    int commendIdx = commend - 1;
+
+                    //0을 입력했을때 index범위 오류 방지
+                    if (commendIdx > -1)
+                    {
+                        //존재하는 아이템인 경우
+                        if (invenItem[commendIdx] == 1)
+                        {
+                            playerManager.EquipManager(commendIdx);
+                        }
+                        //잘못된 숫자 입력시
+                        else
+                        {
+                            Console.WriteLine("잘못된 입력입니다.");
+                            Thread.Sleep(900);
+                        }
+                    }
                 }
+                while (commend != 0);
+                Console.Clear();
             }
-        }
 
+            playerManager.ShowInventory(false);
+        }
+        while (command != 0);
     }
 
     //3. 상점 페이지
     public void Store()
     {
-        while(true)
+        int command;
+        do
         {
             Console.Clear();
             //상점 아이템을 보여줌
             ShowItem(false);
-            
-            //행동 입력을 받음
-            int command = InputCommand();
 
-            //나가기
-            if (command == 0)
-            {
-                Console.Clear();
-                break;
-            }
+            //행동 입력을 받음
+            command = InputCommand();
             //아이템구매
-            else if (command == 1)
+            if (command == 1)
             {
                 while (true)
                 {
-                    ShowItem(true);
-                    //구매할 아이템을 입력받음
-                    int commend = InputCommand();
-                    //나가기
-                    if (commend == 0)
+                    int commend;
+                    do
                     {
-                        Console.Clear();
-                        break;
-                    }
-                    //구매할 아이템 선택
-                    else if (commend > 0 && commend <= storeItem.Length)
-                    {
-                        //선택한 아이템정보
-                        Item seleteItem = storeItem[commend - 1];
-                        BuyItem(seleteItem);
-                    }
-                    //테스트용 아이템 전체구매
-                    else if (commend == 924)
-                    {
-                        for (int i = 0; i< storeItem.Length; i++)
+                        ShowItem(true);
+                        //구매할 아이템을 입력받음
+                        commend = InputCommand();
+
+                        //구매할 아이템 선택
+                        if (commend > 0 && commend <= storeItem.Length)
                         {
-                            Item seleteItem = storeItem[i];
+                            //선택한 아이템정보
+                            Item seleteItem = storeItem[commend - 1];
                             BuyItem(seleteItem);
                         }
-                        BuyItem(storeItem[6]);
-                        BuyItem(storeItem[6]);
-                        BuyItem(storeItem[6]);
+                        //잘못된 번호를 입력
+                        else
+                        {
+                            Console.WriteLine("잘못된 입력입니다");
+                            Thread.Sleep(900);
+                        }
                     }
-                    //잘못된 번호를 입력
-                    else
-                    {
-                        Console.WriteLine("잘못된 입력입니다");
-                        Thread.Sleep(900);
-                    }
+                    while (commend != 0);
                 }
             }
             //아이템판매
             else if (command == 2)
             {
-                while (true)
+                int commend;
+                do
                 {
                     ShowInventory(true);
 
-                    int commend = InputCommand();
+                    commend = InputCommand();
                     int idx = commend - 1;
 
-                    //나가기
-                    if (commend == 0)
-                    {
-                        break;
-                    }
-
                     //팔려하는 아이템의 번호가 제대로 입력되었고 비어있는 인벤토리 칸이 아니라면
-                    else if ((-1 < idx)&&(idx< player.Inventory.Length)&&(player.Inventory[idx] != null))
+                    if ((-1 < idx) && (idx < player.Inventory.Length) && (player.Inventory[idx] != null))
                     {
                         //아이템을 판매함.
                         Item selItem = player.Inventory[idx];
                         SellItem(selItem, idx);
                     }
-                    
+
                     //잘못된 입력 처리
                     else
                     {
-                        Console.WriteLine("잘못된 입력입니다.");
-                        Thread.Sleep(500);
+                        if (commend != 0)
+                        {
+                            Console.WriteLine("잘못된 입력입니다.");
+                            Thread.Sleep(500);
+                        }
                     }
                 }
+                while (commend != 0);
             }
         }
-
+        while (command != 0);
     }
     
     //4. 던전입장
     public void Dungeon()
     {
-        bool isSuccess;
-        while (true)
+        int command;
+        do
         {
             Console.Clear();
             DManager.ShowDungeon();
 
-            int command = InputCommand();
+            command = InputCommand();
             int idx = command - 1;
 
-            //나가기
-            if (command == 0)
-            {
-                break;
-            }
-
             //던전에 입장
-            else if ((command > 0) && (command < 4))
+            if ((command > 0) && (command < 4))
             {
-                isSuccess = DManager.EnterDungeon(idx);
-                //던전 클리어 실패시
-                if (isSuccess == false)
+                //체력이 0인 경우 입장이 불가능
+                if (player.Hp <= 0)
                 {
-                    while (true)
-                    {
-                        DManager.Fail();
-                        int commend = InputCommand();
-                        //나가기
-                        if (commend == 0) break;
-                    }
-
+                    Console.WriteLine("던전에 입장할 체력이 부족합니다. 충분한 체력을 채운 뒤 던전에 입장해주세요.");
+                    Thread.Sleep(300);
                 }
-                //던전 클리어 성공시
+                //아닌경우 던전 입장
                 else
                 {
-                    player.Exp++;
-                    while (true)
+                    //던전 입장 (-던전 클리어 실패시 false/성공시 true 반환)
+                    bool isSuccess = DManager.EnterDungeon(idx);
+                    int commend;
+                    //실패 결과 출력
+                    if (isSuccess == false)
                     {
-                        DManager.Success();
-                        int commend = InputCommand();
-                        //나가기
-                        if (commend == 0) break;
+                        do
+                        {
+                            DManager.Fail();
+                            commend = InputCommand();
+                        }
+                        while (commend != 0);
+                    }
+                    //성공 결과 출력
+                    else
+                    {
+                        player.Exp++;
+                        do
+                        {
+                            DManager.Success();
+                            commend = InputCommand();
+                        }
+                        while (commend != 0);
                     }
                 }
             }
             //잘못된 입력 처리
             else
             {
-                Console.WriteLine("잘못된 입력입니다.");
-                Thread.Sleep(300);
+                if (command != 0)
+                {
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(300);
+                }
             }
         }
+        while (command != 0);
     }
 
     //5. 휴식
@@ -361,29 +337,27 @@ public class GameManager
 
         int command = InputCommand();
         //1. 휴식하기
-        if (command == 1)
+        do
         {
-            //보유 금액이 모자랄 시
-            if (player.Gold < cost)
+            if (command == 1)
             {
-                Console.WriteLine("Gold 가 부족합니다.");
-                Thread.Sleep(900);
-            }
-            //보유 금액이 충분할 시
-            else
-            {
-                player.Hp = 100;
-                playerManager.SpendMoney(cost);
-                Console.WriteLine("휴식을 완료했습니다");
-                Thread.Sleep(900);
+                //보유 금액이 모자랄 시
+                if (player.Gold < cost)
+                {
+                    Console.WriteLine("Gold 가 부족합니다.");
+                    Thread.Sleep(900);
+                }
+                //보유 금액이 충분할 시
+                else
+                {
+                    player.Hp = player.MaxHp;
+                    playerManager.SpendMoney(cost);
+                    Console.WriteLine("휴식을 완료했습니다");
+                    Thread.Sleep(900);
+                }
             }
         }
-        //0. 나가기
-        else if (command == 0)
-        {
-            Console.WriteLine("마을로 돌아갑니다.");
-            Thread.Sleep(900);
-        }
+        while (command != 0);
     }
 
     //상점에 내 인벤토리를 보여주는 메서드
@@ -411,7 +385,7 @@ public class GameManager
             {
                 Console.Write("- ");
                 //아이템 판매를 눌렀을때만 활성화
-                if (isSell == true)
+                if (isSell)
                 {
                     Console.Write($"{i + 1}. ");
                 }
@@ -436,11 +410,11 @@ public class GameManager
     }
     
     //상점의 아이템을 보여주는 메서드
-    private void ShowItem(bool isbuy)
+    private void ShowItem(bool isBuy)
     {
         Console.Clear();
         Console.Write("[상점]");
-        if (isbuy == true)
+        if (isBuy) 
         {
             Console.Write(" - 아이템구매");
         }
@@ -448,7 +422,6 @@ public class GameManager
         Console.WriteLine();
         Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
         Console.WriteLine();
-        bool isBuy = isbuy;
         Console.WriteLine($"[보유 골드]\n {player.Gold} G");
         Console.WriteLine();
         Console.WriteLine("[아이템 목록]");
@@ -456,7 +429,7 @@ public class GameManager
         {
             //아이템 목록 출력하는거
             Console.Write("- ");
-            if (isBuy == true)
+            if (isBuy)
             {
                 Console.Write($" {i + 1}. ");
             }
@@ -467,6 +440,7 @@ public class GameManager
             Console.SetCursorPosition(37, (8 + i));
             Console.Write($"|{storeItem[i].Description}");
             Console.SetCursorPosition(95, (8 + i));
+
             if (storeItem[i].isSold == false)
             {
                 Console.Write($"|{storeItem[i].Price} G");
@@ -491,7 +465,7 @@ public class GameManager
     public void BuyItem(Item seleteItem)
     {
         //이미 구매한 아이템이라면
-        if (seleteItem.isSold == true)
+        if (seleteItem.isSold)
         {
             Console.WriteLine("이미 구매한 아이템입니다.");
         }
@@ -529,7 +503,7 @@ public class GameManager
     public void SellItem(Item seleteItem, int idx)
     {
         //장착중인 아이템이라면 판매불가
-        if (seleteItem.isEquip == true)
+        if (seleteItem.isEquip)
         {
             Console.WriteLine("장착중인 아이템은 판매할 수 없습니다.");
             Thread.Sleep(400);

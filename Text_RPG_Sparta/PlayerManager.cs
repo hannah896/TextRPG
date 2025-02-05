@@ -1,6 +1,5 @@
 ﻿#nullable enable
 using System;
-using System.Reflection;
 
 public class PlayerManager
 {
@@ -22,6 +21,8 @@ public class PlayerManager
         Console.WriteLine("캐릭터의 정보가 표시됩니다.");
         Console.WriteLine();
         Console.WriteLine($"Lv. {player.Level}");
+        Console.WriteLine($"({Math.Round((double)player.Exp / (double)player.MaxExp) * 100, 2}%)");
+        Console.WriteLine();
         Console.WriteLine($"{player.Name} ( {player.Job} )");
 
         Console.Write($"공격력: {player.Atk}  ");
@@ -36,7 +37,7 @@ public class PlayerManager
             Console.Write($"(+{player.ItemEffect_def})");
         }
         Console.WriteLine();
-        Console.WriteLine($"체 력 : {player.Hp}");
+        Console.WriteLine($"체 력 : {player.Hp}/{player.MaxHp}");
         Console.WriteLine($"Gold  : {player.Gold}");
         Console.WriteLine();
         Console.WriteLine("1. 이름 다시 짓기");
@@ -46,11 +47,7 @@ public class PlayerManager
     //레벨업
     public void LevelUp()
     {
-        Console.WriteLine("!!! Level UP !!!");
-        Console.WriteLine();
-        Console.WriteLine($"{player.Job} {player.Name}의 레벨이 올랐습니다!");
-        Console.WriteLine($"{player.Level} -> {player.Level + 1}");
-        if (player.Exp == player.MaxExp)
+        if (player.Exp >= player.MaxExp)
         {
             //레벨업후 초기화
             player.Level++;
@@ -61,6 +58,10 @@ public class PlayerManager
             player.Atk += 0.5f;
             player.Def += 1f;
         }
+        Console.WriteLine("!!! Level UP !!!");
+        Console.WriteLine();
+        Console.WriteLine($"{player.Job} {player.Name}의 레벨이 올랐습니다!");
+        Console.WriteLine($"{player.Level - 1} -> {player.Level}");
     }
 
     //장착관리
@@ -73,7 +74,7 @@ public class PlayerManager
         {
             UsePotion(index);
             Console.WriteLine($"{item.Name} 을 사용했습니다.");
-            Console.ReadLine();
+            Thread.Sleep(400);
         }
 
         //아이템 장착하기 
@@ -81,14 +82,14 @@ public class PlayerManager
         {
             if (item.Effect == "Def")
             {
-                EquipAtkItem(item);
+                EquipDefItem(item);
             }
             else
             {
-                EquipDefItem(item);
+                EquipAtkItem(item);
             }
             Console.WriteLine($"{item.Name}을 장착했습니다.");
-            Console.ReadLine();
+            Thread.Sleep(400);
         }
 
         //아이템 장착해제
@@ -97,14 +98,13 @@ public class PlayerManager
             if (item.Effect == "Def")
             {
                 UnequipDefItem(item);
-
             }
             else
             {
                 UnequipAtkItem(item);
             }
             Console.WriteLine($"{item.Name} 의 장착을 해제하였습니다.");
-            Console.ReadLine();
+            Thread.Sleep(400);
         }
     }
 
@@ -320,5 +320,4 @@ public class PlayerManager
         string name = Console.ReadLine();
         player.Name = name;
     }
-
 }
