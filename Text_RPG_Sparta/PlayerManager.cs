@@ -1,13 +1,12 @@
 ﻿#nullable enable
 using System;
-using System.Diagnostics.Metrics;
+using System.Reflection;
 
-/// <summary>
-/// Summary description for Class1
-/// </summary>
 public class PlayerManager
 {
     private Player player;
+    private const int AtkSlot = 0;
+    private const int DefSlot = 1;
 
     //생성자
     public PlayerManager(Player player)
@@ -47,6 +46,10 @@ public class PlayerManager
     //레벨업
     public void LevelUp()
     {
+        Console.WriteLine("!!! Level UP !!!");
+        Console.WriteLine();
+        Console.WriteLine($"{player.Job} {player.Name}의 레벨이 올랐습니다!");
+        Console.WriteLine($"{player.Level} -> {player.Level + 1}");
         if (player.Exp == player.MaxExp)
         {
             //레벨업후 초기화
@@ -56,136 +59,116 @@ public class PlayerManager
 
             //레벨업의 효과
             player.Atk += 0.5f;
-            player.Def += 1;
-
-            Console.WriteLine("!!! Level UP !!!");
-            Console.WriteLine();
-            Console.WriteLine($"{player.Job} {player.Name}의 레벨이 올랐습니다!");
-            Console.WriteLine($"{player.Level-1} -> {player.Level}") ;
+            player.Def += 1f;
         }
     }
 
     //장착관리
-    public void EqualManager(int commend)
+    public void EquipManager(int index)
     {
-        Item item = player.Inventory[commend];
-        
+        Item item = player.Inventory[index];
+
         //소모형 아이템인경우
         if (item.Effect == "HP")
         {
-            player.Inventory[commend] = null;
-            player.Hp += 20;
-            //체력이 최대 체력을 오버했다면 최대체력으로 바꿔줌.
-            if (player.Hp > player.MaxHp)
-            {
-                player.Hp = player.MaxHp;
-            }
-
+            UsePotion(index);
             Console.WriteLine($"{item.Name} 을 사용했습니다.");
             Console.ReadLine();
         }
 
         //아이템 장착하기 
-        if (item.isEquip == false)
+        else if (item.isEquip == false)
         {
-            
-            //무기일 때
-            if (item.Effect == "Atk")
+            if (item.Effect == "Def")
             {
-                //이미 다른 무기를 장착하였다면
-                if (player.EquipItem[0, 0] != null)
-                {
-                    //해당 무기 장착을 해제함
-                    Item oldItem = player.EquipItem[0, 0];
-
-                    player.Atk -= oldItem.EffectValue;
-                    player.ItemEffect_atk -= oldItem.EffectValue;
-                    oldItem.isEquip = false;
-                }
-                player.EquipItem[0, 0] = item;
-                player.Atk += item.EffectValue;
-                player.ItemEffect_atk += item.EffectValue;
-                item.isEquip = true;;
+                EquipAtkItem(item);
             }
-
-            //방어구일 때
-            else if (item.Effect == "Def")
+            else
             {
-                //이미 다른 방어구를 장착하였다면
-                if (player.EquipItem[1, 0] != null)
-                {
-                    //해당 방어구 장착을 해제함
-                    Item oldItem = player.EquipItem[1, 0];
-
-                    player.Def -= oldItem.EffectValue;
-                    player.ItemEffect_def -= oldItem.EffectValue;
-                    oldItem.isEquip = false;
-                }
-                player.EquipItem[1, 0] = item;
-                player.Def += item.EffectValue;
-                player.ItemEffect_def += item.EffectValue;
-                item.isEquip = true;
-                Thread.Sleep(400);
+                EquipDefItem(item);
             }
-
-            //장착성공을 출력
-            Console.WriteLine($"{item.Name} 을 장착하였습니다.");
-            Thread.Sleep(400);
+            Console.WriteLine($"{item.Name}을 장착했습니다.");
+            Console.ReadLine();
         }
-        //아이템 장착 해제하기
+
+        //아이템 장착해제
         else
         {
-            item.isEquip = false;
-            //무기일때
-            if (item.Effect == "Atk")
+            if (item.Effect == "Def")
             {
-                for (int i = 0; i < 3; i++)
-                {
-                    if (player.EquipItem[0, i] == item)
-                    {
-                        player.EquipItem[0, i] = null;
-                        player.Atk -= item.EffectValue;
-                        player.ItemEffect_atk -= item.EffectValue;
-                    }
-                }
-            }
+                UnequipDefItem(item);
 
-            //방어구일 때
-            else if (item.Effect == "Def")
+            }
+            else
             {
-                for (int i = 0; i < 3; i++)
-                {
-                    if (player.EquipItem[1, i] == item)
-                    {
-                        player.EquipItem[1, i] = null;
-                        player.Def -= item.EffectValue;
-                        player.ItemEffect_def -= item.EffectValue;
-                    }
-                }
+                UnequipAtkItem(item);
             }
-
             Console.WriteLine($"{item.Name} 의 장착을 해제하였습니다.");
             Console.ReadLine();
         }
     }
 
-    //인벤토리의 아이템의 갯수 배열리턴
-    public int [] InventoryCount()
+    //소모형 아이템(HP 포션)을 사용
+    public void UsePotion(int index)
     {
-        int[] inven = new int [player.Inventory.Length];
+        Item item = player.Inventory[index];
+        player.Inventory[index] = null;
+        player.Hp += 20f;
 
-        for (int i=0;i<inven.Length; i++)
+        //체력이 최대 체력을 오버했다면 최대체력으로 바꿔줌.
+        if (player.Hp > player.MaxHp)
         {
-            if (player.Inventory[i] != null)
-            {
-                inven[i] = 1;
-            }
-            else
-            {
-                inven[i] = 0;
-            }
+            player.Hp = player.MaxHp;
         }
-        return inven;
+    }
+
+    //무기 아이템을 장착
+    public void EquipAtkItem(Item item)
+    {
+        //이미 다른 무기를 장착하였다면
+        if (player.EquipItem[AtkSlot] != null)
+        {
+            //해당 무기 장착을 해제함
+            UnequipAtkItem(player.EquipItem[AtkSlot]);
+        }
+        player.EquipItem[AtkSlot] = item;
+        player.Atk += item.EffectValue;
+        player.ItemEffect_atk += item.EffectValue;
+        item.isEquip = true;
+    }
+
+    //무기 아이템의 장착을 해제
+    public void UnequipAtkItem(Item oldItem)
+    {
+        player.Atk -= oldItem.EffectValue;
+        player.ItemEffect_atk -= oldItem.EffectValue;
+        oldItem.isEquip = false;
+        player.EquipItem[AtkSlot] = null;
+    }
+
+    //방어구 아이템을 장착
+    public void EquipDefItem(Item item)
+    {
+        //이미 다른 방어구를 장착하였다면
+        if (player.EquipItem[DefSlot] != null)
+        {
+            //해당 방어구 장착을 해제함
+            UnequipDefItem(player.EquipItem[DefSlot]);
+        }
+        player.EquipItem[DefSlot] = item;
+        player.Def += item.EffectValue;
+        player.ItemEffect_def += item.EffectValue;
+        item.isEquip = true;
+        Thread.Sleep(400);
+    }
+
+    //방어구 아이템을 해제
+    public void UnequipDefItem(Item oldItem)
+    {
+        player.Def -= oldItem.EffectValue;
+        player.ItemEffect_def -= oldItem.EffectValue;
+        oldItem.isEquip = false;
+        player.EquipItem[DefSlot] = null;
     }
 
     //인벤토리 아이템 보여주기
@@ -196,6 +179,8 @@ public class PlayerManager
         SortInven();
 
         Console.Write("[인벤토리]");
+        
+        //장착관리에 들어갈 때 사용
         if (itemEquip == true)
         {
             Console.Write(" - 장착 관리");
@@ -204,8 +189,11 @@ public class PlayerManager
         Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
         Console.WriteLine();
         Console.WriteLine("[아이템 목록]");
+        
+        //인벤토리 시각화
         ShowInven();
         Console.WriteLine();
+        
         for (int i = 0; i < player.Inventory.Length; i++)
         {
             //비어있는 아이템칸은 스킵
@@ -267,10 +255,29 @@ public class PlayerManager
         return false;
     }
 
+    //인벤토리의 아이템의 갯수 배열리턴
+    public int[] GetInventoryArray()
+    {
+        int[] inven = new int[player.Inventory.Length];
+
+        for (int i = 0; i < inven.Length; i++)
+        {
+            if (player.Inventory[i] != null)
+            {
+                inven[i] = 1;
+            }
+            else
+            {
+                inven[i] = 0;
+            }
+        }
+        return inven;
+    }
+
     //원래는 정렬오류때문에 확인하려고 만든 시각적 배열
     public void ShowInven()
     {
-        int[] inven = InventoryCount();
+        int[] inven = GetInventoryArray();
         for (int i=0; i< inven.Length; i++) 
         {
             if (inven[i] == 0)
@@ -288,20 +295,20 @@ public class PlayerManager
     //인벤토리 정렬
     public void SortInven()
     {
-        int lastMemoryidx = -1;
+        int lastValidIndex = -1;
         for (int i=0; i< player.Inventory.Length -1; i++)
         {
             //앞뒤로 null일떄
             if ((player.Inventory[i] == null)&&(player.Inventory[i+1] != null))
             {
-                player.Inventory[lastMemoryidx + 1] = player.Inventory[i + 1];
+                player.Inventory[lastValidIndex + 1] = player.Inventory[i + 1];
                 player.Inventory[i + 1] = null;
-                lastMemoryidx++;
+                lastValidIndex++;
             }
             //인벤토리에 아이템이 있을때
             else
             {
-                lastMemoryidx = i;
+                lastValidIndex = i;
             }
         }
     }

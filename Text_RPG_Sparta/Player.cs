@@ -17,7 +17,7 @@ public class Player
     private float maxHp = 0f;
 
     private Item[]? inventory;
-	private Item[,]? equipItem;
+	private Item[]? equipItem;
 
     //생성자
     public Player(string name, string job)
@@ -45,7 +45,7 @@ public class Player
 		else if (job == "마법사")
 		{
             this.hp = 90f;
-            this.maxHp = 190f;
+            this.maxHp = 90f;
             this.def = 10f;
             this.atk = 25f;
         }
@@ -129,7 +129,7 @@ public class Player
         protected set { inventory = value; }
 	}
 
-	public Item[,] EquipItem
+	public Item[] EquipItem
 	{
 		get { return equipItem; }
         set { equipItem = value; }

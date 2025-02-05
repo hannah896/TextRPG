@@ -4,10 +4,6 @@ using System.Data.SqlTypes;
 using System.Globalization;
 using System.Reflection.Metadata.Ecma335;
 using System.Xml.Serialization;
-
-/// <summary>
-/// Summary description for Class1
-/// </summary>
 public enum DungeonType
 {
     Easy,
@@ -167,7 +163,7 @@ public class GameManager
         //인벤토리 장착관리
         else if (command == 1)
         {
-            int[] invenItem = playerManager.InventoryCount();
+            int[] invenItem = playerManager.GetInventoryArray();
 
             while (true)
             {
@@ -187,7 +183,7 @@ public class GameManager
                 }
                 else if (invenItem[commendIdx] == 1)
                 {
-                    playerManager.EqualManager(commendIdx);
+                    playerManager.EquipManager(commendIdx);
                 }
 
                 //잘못된 숫자를 입력한 경우
