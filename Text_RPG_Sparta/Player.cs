@@ -28,6 +28,9 @@ public class Player
         this.gold = 1500;
         this.exp = 0;
 		this.maxExp = 1;
+
+        inventory = new Item[10];
+        
         if (job == "전사")
 		{
             this.hp = 100f;
@@ -123,7 +126,7 @@ public class Player
         set { itemEffect_def = value; }
     }
 
-    public Item [] Inventory
+    public Item[] Inventory
 	{
 		get { return  inventory; }
         protected set { inventory = value; }
