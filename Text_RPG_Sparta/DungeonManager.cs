@@ -29,9 +29,6 @@ public class DungeonManager
         dungeonInfo.Add(DungeonType.Hard, new Dungeon("어려운 던전", 17, 15, 2500));
 
         this.player = player;
-        easy = DungeonType.Easy;
-        normal = DungeonType.Normal;
-        hard = DungeonType.Hard;
     }
 
     //던전 정보 보여주기
