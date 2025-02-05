@@ -7,27 +7,32 @@ namespace Text_RPG_Sparta
         static void Main(string[] args)
         {
             //캐릭터 생성하는것부터 시작하는거!!!
-            Player player;
-            while (true)
+            int command = -1;
+
+            do
             {
+                Console.Clear();
                 Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
                 Console.WriteLine("1. 캐릭터를 생성하기");
                 Console.WriteLine("0. 종료하기");
                 Console.Write("\n>>>");
-                int command = int.Parse(Console.ReadLine());
-                if (command == 1)
+                string command_s = Console.ReadLine();
+                try
                 {
-                    player = MakeCharacter();
-                    break;
+                    command = int.Parse(command_s);
                 }
-                else if (command == 0)
+                catch (FormatException)
                 {
-                    Environment.Exit(0);
+                    Console.WriteLine("잘못된 입력입니다.");
                 }
-            }
 
+            }
+            while (command != 1);
+
+            Player player = MakeCharacter();
             PlayerManager playerManager = new PlayerManager(player);
             GameManager gameManager = new GameManager(player, playerManager);
+
 
             while (true)
             {

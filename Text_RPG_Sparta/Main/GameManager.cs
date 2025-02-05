@@ -200,31 +200,32 @@ public class GameManager
             //아이템구매
             if (command == 1)
             {
-                while (true)
+                int commend;
+                do
                 {
-                    int commend;
-                    do
-                    {
-                        ShowItem(true);
-                        //구매할 아이템을 입력받음
-                        commend = InputCommand();
+                    Console.Clear();
+                    ShowItem(true);
+                    //구매할 아이템을 입력받음
+                    commend = InputCommand();
 
-                        //구매할 아이템 선택
-                        if (commend > 0 && commend <= storeItem.Length)
-                        {
-                            //선택한 아이템정보
-                            Item seleteItem = storeItem[commend - 1];
-                            BuyItem(seleteItem);
-                        }
-                        //잘못된 번호를 입력
-                        else
+                    //구매할 아이템 선택
+                    if (commend > 0 && commend <= storeItem.Length)
+                    {
+                        //선택한 아이템정보
+                        Item seleteItem = storeItem[commend - 1];
+                        BuyItem(seleteItem);
+                    }
+                    //잘못된 번호를 입력
+                    else
+                    {
+                        if (commend != 0)
                         {
                             Console.WriteLine("잘못된 입력입니다");
                             Thread.Sleep(900);
                         }
                     }
-                    while (commend != 0);
                 }
+                while (commend != 0);
             }
             //아이템판매
             else if (command == 2)
